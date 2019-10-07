@@ -1,5 +1,9 @@
+{include file="header.tpl"}
+
 <ul>
     {foreach from=$inmobiliarias item=$inmobiliaria}
-        <li>{$inmobiliaria->ciudad}</li>
+        <a href="{$base}propiedades/{$inmobiliaria->id}"><li>{$inmobiliaria->ciudad}</li></a>
     {/foreach}
 </ul>
+
+{include file="footer.tpl"}
