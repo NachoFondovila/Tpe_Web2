@@ -1,2 +1,1 @@
-//ayuda al model 
- jf fhghgh
+//ayuda al model
