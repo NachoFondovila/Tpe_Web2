@@ -17,8 +17,8 @@ if($action == ''){
     if (isset($action)){
         $partesURL = explode("/", $action);
 
-        if($partesURL[0] == "tareas"){
-            $controller->GetTareas();
+        if($partesURL[0] == "propiedades"){
+            $controller->getPropiedades();
         }elseif($partesURL[0] == "insertar") {
             $controller->InsertarTarea();
         }elseif($partesURL[0] == "finalizar") {
