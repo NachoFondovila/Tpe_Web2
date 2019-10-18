@@ -14,7 +14,7 @@ class inmobiliariaController {
         $this->view = new inmobiliariaView();
     }
 
-    function getInmobiliarias(){
+    function showInmobiliarias($params = null){
         $inmobiliarias=$this->model->getInmobiliarias();//le pido al model que me traiga de la DB el arreglo de inmobiliarias
         $this->view->displayInmobiliarias($inmobiliarias);//le envio al view el arreglo para que lo muestre 
     }

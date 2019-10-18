@@ -2,29 +2,21 @@
 require_once "Controllers/inmobiliariaController.php";
 require_once "Controllers/propiedadController.php";
 require_once "Controllers/userController.php";
-
+require_once "Router.php";
 
 $action=$_GET["action"];
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+define("VER", BASE_URL.'ver');
 // define("INMOBILIARIAS_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 // define("PROPIEDADES_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 // define("LOGGIN_URL"loggin');
 
-$controller= new inmobiliariaController();
-if($action == ''){
-    $controller->getInmobiliarias();
-}else{
-    if (isset($action)){
-        $partesURL = explode("/", $action);
+$r= new Router();
 
-        if($partesURL[0] == "propiedades"){
-            $controller->getPropiedades();
-        }elseif($partesURL[0] == "insertar") {
-            $controller->InsertarTarea();
-        }elseif($partesURL[0] == "finalizar") {
-            $controller->FinalizarTarea($partesURL[1]);
-        }elseif($partesURL[0] == "borrar") {
-            $controller->BorrarTarea($partesURL[1]);
-        }
-    }
-}
+$r->addRoute("propiedades/:ID","GET","propiedadController","showPropiedades");
+
+
+
+$r->setDefaultRoute("inmobiliariaController","showInmobiliarias");
+
+$r->route($_GET['action'],$_SERVER['REQUEST_METHOD']);
