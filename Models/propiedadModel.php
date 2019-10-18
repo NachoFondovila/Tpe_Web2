@@ -10,9 +10,8 @@ class propiedadModel{
 
     public function getPropiedades($idInmobiliaria){
         $sentencia= $this->db->prepare('SELECT * FROM propiedad WHERE id_inmobiliaria_fk = ?');
-        echo 
         $sentencia->execute((array($idInmobiliaria)));
-        $propiedades= $sentencia->fetch(PDO::FETCH_OBJ);
+        $propiedades= $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $propiedades;
     }
 
@@ -21,7 +20,16 @@ class propiedadModel{
         $propiedad->execute(array($id));
         return $propiedad->fetch(PDO::FETCH_OBJ);
     }
+    public function elimPropiedad($id){
+        $propiedad= $this->db->prepare("DELETE * FROM propiedad WHERE id=?");
+        $propiedad->execute($id);
+    }
 
+    
+    function aggPropiedad($direccion,$tipo,$estado,$imagen,$id_inmobiliaria_fk){
+        $propiedad=$this->db->prepare('INSERT INTO propiedad(direccion,tipo,estado,imagen,id_inmobiliaria_fk) VALUES(?,?,?,?,?)');
+        $propiedad->execute([$direccion,$tipo,$estado,$imagen,$id_inmobiliaria_fk]); 
+    }
 
 }
 

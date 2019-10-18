@@ -13,7 +13,9 @@ class inmobiliariaView{
     }
     
     public function displayInmobiliarias($inmobiliarias){
+        $title="Anabel Altuna | Estudio Inmobiliario";
         $this->Smarty->assign('inmobiliarias',$inmobiliarias);
+        $this->Smarty->assign('title',$title);
         $this->Smarty->display("Templates/showInmobiliaria.tpl");
         // $title="FOUND";
         // $Smarty->assign('title',$title);

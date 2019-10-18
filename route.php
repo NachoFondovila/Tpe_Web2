@@ -13,8 +13,10 @@ define("VER", BASE_URL.'ver');
 
 $r= new Router();
 
+$r->addRoute("add/:ID", "POST","propiedadController","addPropiedad");
+$r->addRoute("ver/:ID","GET","propiedadController","showPropiedades");
 $r->addRoute("propiedades/:ID","GET","propiedadController","showPropiedades");
-
+$r->addRoute("propiedades/eliminar/:ID", "GET", "propiedadController","deletePropiedad");
 
 
 $r->setDefaultRoute("inmobiliariaController","showInmobiliarias");

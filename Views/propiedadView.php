@@ -11,8 +11,10 @@ class propiedadView{
         $this->Smarty->assign('base',BASE_URL);//crear variables en smarty
     }
     
-    public function displayPropiedades($propiedades){
-        $this->Smarty->assign('propiedad',$propiedades->tipo );
-        $this->Smarty->assign('propiedades',$propiedades->estado );
+    public function displayPropiedades($propiedades,$id,$title){
+        $this->Smarty->assign('id',$id);
+        $this->Smarty->assign('title',$title);
+        $this->Smarty->assign('propiedades',$propiedades);
+        $this->Smarty->display("Templates/showPropiedades.tpl");
     }
-}///prueben ek probar la api en postman
+}///probar primero en la api con postman

@@ -8,14 +8,12 @@ class inmobiliariaModel{
         $this->db = new PDO('mysql:host=localhost;dbname=inmobiliarias;charset=utf8', 'root', '');
     }
 
-    public function getInmobiliarias(){
+    function getInmobiliarias(){
         $sentencia= $this->db->prepare('SELECT * FROM inmobiliaria');
         $sentencia->execute();
         $inmobiliarias =$sentencia->fetchAll(PDO::FETCH_OBJ);
         return $inmobiliarias;
     }
-
-
 
 
 }
