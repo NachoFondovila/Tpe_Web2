@@ -1,5 +1,5 @@
         <h3>LOGUEARSE</h3>
-    <form action="login/verify" method="POST">
+    <form action="verify" method="POST">
 
             <label>Usuario (email)</label>
             <input type="email" name="username" placeholder="Ingrese email">

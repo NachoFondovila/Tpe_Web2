@@ -8,6 +8,7 @@
     {/foreach}
 </ul>
 
+{if()}
 {include file="verifyUser.tpl"}
 
 {include file="footer.tpl"}

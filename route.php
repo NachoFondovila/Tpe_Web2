@@ -15,8 +15,9 @@ define("LOGIN", 'BASE_URL.login'.'/');
 $r= new Router();
 
 $r->addRoute("login", "GET", "userController", "showLogin");
-$r->addRoute("login/verify", "POST", "userController", "verifyUser");
+$r->addRoute("addUser", "POST", "userController", "registracion");
 
+$r->addRoute("ver","GET","inmobiliariaController","showInmobiliaria");
 $r->addRoute("ver/:ID/:FK","GET","propiedadController","showPropiedades");
 $r->addRoute("propiedades/:ID","GET","propiedadController","showPropiedades");
 $r->addRoute("add/:ID", "POST","propiedadController","addPropiedad");

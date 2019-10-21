@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-21 02:40:56
+/* Smarty version 3.1.33, created on 2019-10-21 22:12:32
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showInmobiliaria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dacfe98d67136_04064493',
+  'unifunc' => 'content_5dae113034fbe8_84743978',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4246fbc2cd7ccbaa002969efbe8be71d5bc40871' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showInmobiliaria.tpl',
-      1 => 1571618432,
+      1 => 1571688751,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dacfe98d67136_04064493 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dae113034fbe8_84743978 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
    
