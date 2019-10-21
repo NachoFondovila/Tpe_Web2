@@ -14,10 +14,10 @@ class UserModel {
         var_dump($promese);
     }
 
-    public function getByMail($mail) {/* Retorna un usuario según el mail pasado*/
+    public function getByMail($mail) {/* Retorna un obj usuario según el mail pasado*/
         $query = $this->db->prepare('SELECT * FROM usuario WHERE mail = ?');
         $query->execute(array($mail));
-        $user=$query->fetchAll(PDO::FETCH_OBJ);
+        $user=$query->fetch(PDO::FETCH_OBJ);
         return $user;
     }
 

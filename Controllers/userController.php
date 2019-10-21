@@ -22,12 +22,14 @@ class userController{
     public function verifyUser() {
         $username = $_POST['username'];
         $contraseña = $_POST['password'];
-        $mail=$_POST['email'];
-        $user = $this->model->getByUsername($mail);        
-        
-        if (!empty($user) /*&& password_verify($contraseña, $user->password)*/) {// encontró un user con el username que mandó, y tiene la misma contraseña
+
+        $user = $this->model->getByMail($username);
+        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+        var_dump($user->password);
+        var_dump($hash);
+        die();
+        if (!empty($user) && password_verify($hash, $user->password)) {// encontró un user con el username que mandó, y tiene la misma contraseña
             $this->helper->checkLog($user);
-            // $user = $this->model->getByUsername($username);
         }        
         else {
             $error="Login incorrecto";
@@ -49,15 +51,16 @@ class userController{
         
         
         if(isset($mail) && !($this->model->getByMail($mail)) ){//si el usurio exite, y si no esta ese mail en la db
-            $user=$this->model->addUser($username,$mail,$hash,$ciudad);
+            $this->model->addUser($username,$mail,$hash,$ciudad);
+            $user=$this->model->getByMail();
             $this->helper->login($user);
-            header("location: ");
-
+            header("location:". VER);
+            
         }
         else{
             $error="El mail con el que se intenta registrar ya fue utilizado";
             var_dump($error);
-
+            header("location: ver"); 
         }
 
 

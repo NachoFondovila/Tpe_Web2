@@ -8,7 +8,7 @@
     {/foreach}
 </ul>
 
-{if()}
+{if ! $iniciado}
 {include file="verifyUser.tpl"}
-
+{/if}
 {include file="footer.tpl"}

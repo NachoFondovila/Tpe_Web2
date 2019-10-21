@@ -8,7 +8,7 @@
             <input type="password" name="password" placeholder="Password">
 
         {if $error} 
-            <div class="alert" role="alert">
+            <div role="alert">
                 {$error}
             </div>
          {/if}

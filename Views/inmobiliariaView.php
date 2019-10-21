@@ -12,11 +12,12 @@ class inmobiliariaView{
         $this->smarty->assign('base',BASE_URL);//crear variables en smarty
     }
     
-    public function displayInmobiliarias($inmobiliarias){
+    public function displayInmobiliarias($inmobiliarias,$iniciado){
         $title="Anabel Altuna | Estudio Inmobiliario";
         $titulo="title";
         $this->smarty->assign('inmobiliarias',$inmobiliarias);
         $this->smarty->assign('title',$title);
+        $this->smarty->assign('iniciado',$iniciado);
         // $this->$smarty->assign('titulo',$titulo);
         $this->smarty->display("Templates/showInmobiliaria.tpl");
         // $Smarty->assign('id','ciudad','encargado','direccion');
