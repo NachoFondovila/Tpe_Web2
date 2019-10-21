@@ -1,5 +1,7 @@
 {include file="header.tpl"}
 
+<h1>{$inmobiliaria->ciudad}</h1>
+
 <ul>
     {foreach from=$propiedades item=$propiedad}
         {* <li> {$propiedad->imagen}</li> *}
@@ -7,12 +9,13 @@
         <li> Tipo: {$propiedad->tipo}</li>
         <li> Estado {$propiedad->estado}</li>
         <li>
-            <a href="{$base}propiedades/eliminar/{$propiedad->id}">eliminar</a>
+            <a href="{$base}propiedades/eliminar/{$propiedad->id}/{$inmobiliaria->id}/">eliminar</a>
         </li>
     {/foreach}
 </ul>
 
 <form action="add/{$id}" method="POST">
+        <h4>Agregar propiedad</h4>
         
         <div class=" row"> 
             <label>direccion</label>
@@ -31,7 +34,7 @@
             <input name="image" type="file">
         </div>
         
-        <button type="submit"> AGREGAR propiedad </button>
+        <button type="submit"> AGREGAR </button>
 
     </form>
 

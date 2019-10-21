@@ -11,8 +11,7 @@ class inmobiliariaModel{
     function getInmobiliarias(){
         $sentencia= $this->db->prepare('SELECT * FROM inmobiliaria');
         $sentencia->execute();
-        $inmobiliarias =$sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $inmobiliarias;
+        return $inmobiliarias =$sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
 

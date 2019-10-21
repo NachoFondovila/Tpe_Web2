@@ -1,14 +1,17 @@
 <?php
 require_once "./Models/propiedadModel.php";
 require_once "./Views/propiedadView.php";
-
+require_once "helpers/user.helper.php";
 
 class propiedadController {
     
     private $model;
     private $view;
 
-	function __construct(){
+    function __construct(){
+        $Helper=new userHelper();
+        // $Helper->checkLoggedIn();
+
         $this->model = new propiedadModel();
         $this->view = new propiedadView();
     }
@@ -16,15 +19,16 @@ class propiedadController {
     function showPropiedades($params = []){
         $title="Anabel Altuna | Estudio Inmobiliario";
         $idInmobiliaria = $params[':ID'];
+        $inmobiliaria=$this->model->getInmobiliaria($idInmobiliaria);
         $propiedades=$this->model->getPropiedades($idInmobiliaria);//le pido al model que me traiga de la DB el arreglo de propiedades
-        $this->view->displayPropiedades($propiedades,$idInmobiliaria,$title);//le envio al view el arreglo para que lo muestre 
+        $this->view->displayPropiedades($propiedades,$idInmobiliaria,$title,$inmobiliaria);//le envio al view el arreglo para que lo muestre 
     }
 
     function showPropiedad($params=null){
         $idPropiedad= $params[':ID'];
         $propiedad=$this->model->getPropiedad($idPropiedad);
         if($propiedad){
-        $this->view->displayPropiedad($propiedad);
+            $this->view->displayPropiedad($propiedad);
         }
     }
 
@@ -40,12 +44,16 @@ class propiedadController {
             $this->model->aggPropiedad($direccion,$estado,$estado,$imagen,$idInmo);
             header("Location: ". VER . "/". $idInmo);
         }
+        else{
+            $this->view->displayError("faltan completar los campos obligatorios");
+        }
     }
 
     function deletePropiedad($params = []){
         $idPropiedad=$params[':ID'];
+        $idInmobiliaria=$params[':FK'];
         $propiedad=$this->model->elimPropiedad($idPropiedad);
-        header("Location: ". VER . "/" . $idPropiedad);
+        header("Location: ". VER . "/" . $idPropiedad . "/". $idInmobiliaria);
     }
   
 }

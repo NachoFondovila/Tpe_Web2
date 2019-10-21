@@ -22,12 +22,18 @@ class propiedadModel{
     }
     public function elimPropiedad($id){
         $propiedad= $this->db->prepare("DELETE * FROM propiedad WHERE id=?");
-        $propiedad->execute($id);
+        $propiedad->execute($id); 
+    }
+
+    function getInmobiliaria($id){
+        $sentencia= $this->db->prepare('SELECT * FROM inmobiliaria WHERE id=?');
+        $sentencia->execute(array($id));
+        return $inmobiliaria =$sentencia->fetch(PDO::FETCH_OBJ);
     }
 
     
     function aggPropiedad($direccion,$tipo,$estado,$imagen,$id_inmobiliaria_fk){
-        $propiedad=$this->db->prepare('INSERT INTO propiedad(direccion,tipo,estado,imagen,id_inmobiliaria_fk) VALUES(?,?,?,?,?)');
+        $propiedad = $this->db->prepare('INSERT INTO propiedad(direccion,tipo,estado,imagen,id_inmobiliaria_fk) VALUES(?,?,?,?,?)');
         $propiedad->execute([$direccion,$tipo,$estado,$imagen,$id_inmobiliaria_fk]); 
     }
 

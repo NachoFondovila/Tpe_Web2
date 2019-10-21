@@ -1,24 +1,24 @@
 <?php
 require_once "libs/Smarty.class.php";
-// require_once "Helpers/helper.php";
+require_once "Helpers/user.helper.php";
 
 class inmobiliariaView{
     
-    private $Smarty;
+    private $smarty;
 
     public function __construct(){
-        // $Helper= new helper();
-        $this->Smarty=new Smarty();
-        $this->Smarty->assign('base',BASE_URL);//crear variables en smarty
+        $this->smarty=new Smarty();
+        $Helper= new userHelper();
+        $this->smarty->assign('base',BASE_URL);//crear variables en smarty
     }
     
     public function displayInmobiliarias($inmobiliarias){
         $title="Anabel Altuna | Estudio Inmobiliario";
-        $this->Smarty->assign('inmobiliarias',$inmobiliarias);
-        $this->Smarty->assign('title',$title);
-        $this->Smarty->display("Templates/showInmobiliaria.tpl");
-        // $title="FOUND";
-        // $Smarty->assign('title',$title);
+        $titulo="title";
+        $this->smarty->assign('inmobiliarias',$inmobiliarias);
+        $this->smarty->assign('title',$title);
+        // $this->$smarty->assign('titulo',$titulo);
+        $this->smarty->display("Templates/showInmobiliaria.tpl");
         // $Smarty->assign('id','ciudad','encargado','direccion');
     }
 }
