@@ -6,18 +6,15 @@ class userView{
     private $smarty;
 
     function __construct(){
-    
         $Helper= new userHelper();
         $this->smarty=new Smarty();    
-
     }
     
-    public function showLogin($error = null ) {
+    public function showLogin($error = null, $iniciado) {
         $title="Anabel Altuna | Estudio Inmobiliario";
         $this->smarty->assign('error', $error);
+        $this->smarty->assign('iniciado', $iniciado);
         $this->smarty->assign('title', $title);
         $this->smarty->display('templates/login.tpl');
     }
-
-    
-    }
+}

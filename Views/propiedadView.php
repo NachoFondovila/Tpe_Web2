@@ -8,7 +8,7 @@ class propiedadView{
 
     public function __construct(){
         $Helper= new userHelper();
-        $userName= $Helper->getLoggedUserName();
+        $userName= $Helper->getLoggedUser();
 
         $this->Smarty=new Smarty();
         $this->Smarty->assign('base',BASE_URL);//crear variables en smarty
@@ -16,12 +16,20 @@ class propiedadView{
 
     }
     
-    public function displayPropiedades($propiedades,$id,$title,$inmobiliaria){
+    public function displayPropiedades($propiedades,$id,$title,$inmobiliaria,$iniciado){
         $this->Smarty->assign('id',$id);
+        $this->Smarty->assign('iniciado',$iniciado);
         $this->Smarty->assign('inmobiliaria',$inmobiliaria);
         $this->Smarty->assign('title',$title);
         $this->Smarty->assign('propiedades',$propiedades);
         $this->Smarty->display("Templates/showPropiedades.tpl");
+    }
+
+    public function displayPropiedad($propiedad,$inmobiliaria,$iniciado){
+        $this->Smarty->assign('inmobiliaria',$inmobiliaria); 
+        $this->Smarty->assign('iniciado',$iniciado);
+        $this->Smarty->assign('propiedad',$propiedad);
+        $this->Smarty->display("Templates/showPropiedad.tpl");
     }
 
     public function displayError($msgError) {

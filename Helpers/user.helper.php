@@ -1,37 +1,38 @@
 <?php
-//ayuda al model
 
 class userHelper {
-    public function __construct() {}
+    public function __construct() {
+        if (session_status() != PHP_SESSION_ACTIVE)
+            session_start();
+    }
 
     public function login($user) {
-        session_start();
             $_SESSION['ID'] = $user->id;
-            $_SESSION['USERNAME'] = $user->username;
+            $_SESSION['USERNAME'] = $user->nombre;
             $_SESSION['MAIL'] = $user->mail;
             $_SESSION['PASSWORD'] = $user->password;
     }
 
     public function logout() {
-        session_start();
         session_destroy();
+        $user=false;
+        var_dump($_SESSION['USERNAME']);
+        header("Location: ver");  
     }
 
     public function checkLog($user) {
-         var_dump($user . "pppp");
-        session_start();
         if (!isset($_SESSION['USERNAME'])) {
+            //session_start();
             $this->login($user);
         }       
     }
-
+    
     public function getLoggedUser() {
-        session_start();
-        if (session_status() != PHP_SESSION_ACTIVE){
-            return $_SESSION['USERNAME'];
+        if (!isset($_SESSION['USERNAME'])) {
+           return null;
         }
         else{
-            return null;
+            return $_SESSION['USERNAME'];
         }
     }
 }

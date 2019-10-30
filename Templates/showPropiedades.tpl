@@ -1,20 +1,27 @@
 {include file="header.tpl"}
 
-<h1>{$inmobiliaria->ciudad}</h1>
+<h1>propiedades en {$inmobiliaria->ciudad}</h1>
 
 <ul>
     {foreach from=$propiedades item=$propiedad}
-        {* <li> {$propiedad->imagen}</li> *}
-        <li> Direccion: {$propiedad->direccion}</li>
-        <li> Tipo: {$propiedad->tipo}</li>
-        <li> Estado {$propiedad->estado}</li>
+
+        <img src="img/casabalcarce4.jpg">
         <li>
-            <a href="{$base}propiedades/eliminar/{$propiedad->id}/{$inmobiliaria->id}/">eliminar</a>
+            <p>   direccion: {$propiedad->direccion} </p>
+            
+            {if ($iniciado)}
+            <a href="{$base}propiedades/eliminar/{$propiedad->id}/{$inmobiliaria->id}/">Eliminar</a>
+            -_-
+            {/if}
+            <a href="{$base}propiedad/{$propiedad->id}/">Ver detalles</a>
         </li>
+
     {/foreach}
 </ul>
 
-<form action="add/{$id}" method="POST">
+{if isset($iniciado)}
+
+<form action="add/:{$id}" method="POST">
         <h4>Agregar propiedad</h4>
         
         <div class=" row"> 
@@ -37,6 +44,6 @@
         <button type="submit"> AGREGAR </button>
 
     </form>
-
+{/if}
 
 {include file="footer.tpl"}

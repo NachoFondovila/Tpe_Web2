@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-21 21:58:18
+/* Smarty version 3.1.33, created on 2019-10-29 02:54:36
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dae0ddab2e304_73052926',
+  'unifunc' => 'content_5db79bdc1e8fc6_68723854',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b3cad70d5cca577173f85fc83b93121eb8191fa4' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\login.tpl',
-      1 => 1571687870,
+      1 => 1572314071,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dae0ddab2e304_73052926 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5db79bdc1e8fc6_68723854 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 

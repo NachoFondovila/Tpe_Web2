@@ -18,8 +18,6 @@ class inmobiliariaView{
         $this->smarty->assign('inmobiliarias',$inmobiliarias);
         $this->smarty->assign('title',$title);
         $this->smarty->assign('iniciado',$iniciado);
-        // $this->$smarty->assign('titulo',$titulo);
         $this->smarty->display("Templates/showInmobiliaria.tpl");
-        // $Smarty->assign('id','ciudad','encargado','direccion');
     }
 }

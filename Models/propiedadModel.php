@@ -31,6 +31,10 @@ class propiedadModel{
         return $inmobiliaria =$sentencia->fetch(PDO::FETCH_OBJ);
     }
 
+    public function update($id,$direccion,$estado,$imagen=null,$tipo){
+        $query = $this->db->prepare('UPDATE propiedad SET direccion=? , estado=? , imagen=? ,tipo =? WHERE id = ?');
+        $query->execute(array($direccion,$estado,$imagen,$tipo, $id));
+    }
     
     function aggPropiedad($direccion,$tipo,$estado,$imagen,$id_inmobiliaria_fk){
         $propiedad = $this->db->prepare('INSERT INTO propiedad(direccion,tipo,estado,imagen,id_inmobiliaria_fk) VALUES(?,?,?,?,?)');

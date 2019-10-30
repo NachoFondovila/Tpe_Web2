@@ -10,8 +10,6 @@ class UserModel {
     function addUser($name,$mail,$pass,$ciudad){
         $promese=$this->db->prepare("INSERT INTO usuario(nombre,mail,password,ciudad) VALUES(?,?,?,?)");
         $promese->execute(array($name,$mail,$pass,$ciudad));
-        
-        var_dump($promese);
     }
 
     public function getByMail($mail) {/* Retorna un obj usuario según el mail pasado*/
