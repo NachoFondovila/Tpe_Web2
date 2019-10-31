@@ -44,28 +44,25 @@ class propiedadController {
     }
 
     public function updatePropiedad($params = null) {
-        $idPropiedad = $params[':ID']; 
-        var_dump($idInmobiliaria);
-        die();
-        $direccion = $_GET['direc'];
+        $idPropiedad = $params[':ID'];
+        $direccion = $_POST['direc'];
         $tipo = $_POST['type'];
         $estado = $_POST['state'];
         $imagen = $_POST['image'];
         $this->model->update($idPropiedad,$direccion,$estado,$imagen,$tipo);
-        $this->showPropiedad($idPropiedad);
+        header("location: http://localhost/GitHub/Tpe_Web2/propiedad/$idPropiedad"); 
     }
 
     function addPropiedad($params = []){
         $idInmo=$params[':ID'];
-
         $direccion = $_POST['direc'];
         $tipo = $_POST['type'];
         $estado = $_POST['state'];
         $imagen = $_POST['image'];
 
         if(!empty($direccion) && !empty($tipo) && !empty($estado)){
-            $this->model->aggPropiedad($direccion,$estado,$estado,$imagen,$idInmo);
-            header("Location: ". VER . "/". $idInmo);
+            $this->model->aggPropiedad($direccion,$estado,$tipo,$imagen,$idInmo);
+            header("Location: http://localhost/GitHub/Tpe_Web2/inmobiliaria/$idInmo");
         }
         else{
             $this->view->displayError("faltan completar los campos obligatorios");
@@ -74,9 +71,9 @@ class propiedadController {
 
     function deletePropiedad($params = []){
         $idPropiedad=$params[':ID'];
-        $idInmobiliaria=$params[':FK'];
+        // $idInmobiliaria=$params[':FK'];
         $this->model->elimPropiedad($idPropiedad);
-        header("Location: ". VER . "/" . $idPropiedad . "/". $idInmobiliaria);
+        header("Location: http://localhost/GitHub/Tpe_Web2/ver" );
     }
     
   

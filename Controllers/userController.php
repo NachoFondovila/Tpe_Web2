@@ -57,7 +57,7 @@ class userController{
         }
         else{
             $error="El mail con el que se intenta registrar ya fue utilizado";
-            var_dump($error);
+            echo($error);
             header("Location:" . VER/$error); 
         }
     }

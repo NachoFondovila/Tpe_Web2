@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-29 02:52:01
+/* Smarty version 3.1.33, created on 2019-10-31 22:14:27
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5db79b412bf9e4_38318844',
+  'unifunc' => 'content_5dbb4eb3522510_83418988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '35c8112182ebb5ccee70a910811c3b4f72a2f9ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\footer.tpl',
-      1 => 1572313506,
+      1 => 1572556464,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5db79b412bf9e4_38318844 (Smarty_Internal_Template $_smarty_tpl) {
-?>    <?php echo '<script'; ?>
+function content_5dbb4eb3522510_83418988 (Smarty_Internal_Template $_smarty_tpl) {
+?>    <footer>
+        <ul class="pie">
+        <?php if (isset($_smarty_tpl->tpl_vars['inmobiliaria']->value)) {?>
+            <li >Direccion: <?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->direccion;?>
+</li>
+            <li>Teléfono: Tel. <?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->contacto;?>
+</li>
+        <?php }?>
+            <li>E-mail: anabelaltuna@live.com</li>
+            <li>Seguinos en:
+            <a href="https://www.facebook.com/pg/Anabelaltunaestudioinmobiliario/posts/" target="_blank">
+                facebook
+            </a>
+            </li>
+        </ul>
+    </footer>
+    <?php echo '<script'; ?>
  src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>

@@ -1,48 +1,52 @@
 {include file="header.tpl"}
 
-<h1>propiedades en {$inmobiliaria->ciudad}</h1>
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Propiedades en {$inmobiliaria->ciudad}</span>
+</nav>
 
-<ul>
+<div class="propiedades">
+      {if $propiedades != null}
     {foreach from=$propiedades item=$propiedad}
-
-        <img src="img/casabalcarce4.jpg">
-        <li>
-            <p>   direccion: {$propiedad->direccion} </p>
-            
-            {if ($iniciado)}
-            <a href="{$base}propiedades/eliminar/{$propiedad->id}/{$inmobiliaria->id}/">Eliminar</a>
-            -_-
-            {/if}
-            <a href="{$base}propiedad/{$propiedad->id}/">Ver detalles</a>
-        </li>
-
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../img/{$propiedad->imagen}">
+            <div class="card-body">
+                <h5 class="card-title">En {$propiedad->estado}</h5>
+                {* <p class="card-text">Propiedad ubicada en la calle {$propiedad->direccion} en la ciudad de {$inmobiliaria->ciudad}</p> *}
+                {if ($iniciado)}
+                    <a class="btn btn-primary" href="{$base}propiedad/{$propiedad->id}/eliminar">Eliminar</a>
+                {/if}
+                    <a class="btn btn-primary"href="{$base}propiedad/{$propiedad->id}">Ver detalles</a>
+            </div>
+        </div>
     {/foreach}
-</ul>
+      {else}
+        <h3>Aún no hay propiedades disponibles en esta inmobiliaria</h3>
+      {/if}
+</div>
 
 {if isset($iniciado)}
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Agregar Propiedad</span>
+    </nav>
 
-<form action="add/:{$id}" method="POST">
-        <h4>Agregar propiedad</h4>
-        
-        <div class=" row"> 
-            <label>direccion</label>
-            <input name="direc" type="text">
+    <form class="p-4" action="add/{$inmobiliaria->id}" method="POST">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Dirección</label>
+            <input type="text" class="form-control" id="exampleDropdownFormEmail2" name="direc" >
         </div>
-        <div class=" row"> 
-            <label>tipo</label>
-            <input name="type" type="text">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Tipo</label>
+            <input name="type" type="text" class="form-control" id="exampleDropdownFormEmail2" >
         </div>
-        <div class=" row"> 
-            <label>Estado</label>
-            <input name="estate" type="text">
+        <div class="form-group">
+            <label for="exampleDropdownFormPassword2">Estado</label>
+            <input name="state" type="text" class="form-control" id="exampleDropdownFormPassword2" >
         </div>
-        <div class=" row"> 
-            <label>Imagen</label>
-            <input name="image" type="file">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Imagen</label>
+            <input name="image" type="text" class="form-control" id="exampleDropdownFormEmail2" >
         </div>
-        
-        <button type="submit"> AGREGAR </button>
-
+        <button type="submit" class="btn btn-primary">AGREGAR</button>
     </form>
 {/if}
 

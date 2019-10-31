@@ -15,28 +15,28 @@ define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"]
 
 $r= new Router();
 
-$r->addRoute("verify", "POST", "userController", "verifyUser");
+$r->addRoute("verify", "POST", "userController", "verifyUser");//anda
 $r->addRoute("login", "GET", "userController", "showLogin");
 $r->addRoute("logout", "GET", "inmobiliariaController", "logout");
 $r->addRoute("addUser", "POST", "userController", "registracion");
 
-$r->addRoute("addInm", "POST", "inmobiliariaController", "addInmobiliaria");
+$r->addRoute("addInm", "POST", "inmobiliariaController", "addInmobiliaria");//anda
 
-$r->addRoute("ver","GET","inmobiliariaController","showInmobiliarias");
+$r->addRoute("ver","GET","inmobiliariaController","showInmobiliarias");//anda
 
-$r->addRoute("propiedades/:FK","GET","propiedadController","showPropiedades");
+$r->addRoute("inmobiliaria/:FK","GET","propiedadController","showPropiedades");//anda
 
-$r->addRoute("propiedad/:ID","GET","propiedadController","showPropiedad");
+$r->addRoute("propiedad/:ID","GET","propiedadController","showPropiedad");//anda
 
-$r->addRoute("add/:ID", "POST","propiedadController","addPropiedad");
+$r->addRoute("inmobiliaria/add/:ID", "POST","propiedadController","addPropiedad");//anda
 
-$r->addRoute("propiedad/:ID/updateInmo/:IDP","POST","inmobiliariaController","updateInmobiliaria");//me llega mal el id
+$r->addRoute("updateInmo","POST","inmobiliariaController","updateInmobiliaria");//anda
 
-$r->addRoute("propiedad/:ID/update","POST","propiedadController","updatePropiedad");
+$r->addRoute("propiedad/:ID/update","POST","propiedadController","updatePropiedad");//anda
 
-$r->addRoute("propiedades/eliminar/:ID/:FK", "GET", "propiedadController","deletePropiedad");
+$r->addRoute("propiedad/:ID/eliminar", "GET", "propiedadController","deletePropiedad");//anda
 
-$r->addRoute("inmobiliaria/eliminar/:ID", "GET", "inmobiliariaController","deleteInmobiliaria");//como eliminar la tabla completa de inmobiliarias
+$r->addRoute("inmobiliaria/eliminar/:ID", "GET", "inmobiliariaController","deleteInmobiliaria");//anda
 
 $r->setDefaultRoute("inmobiliariaController","showInmobiliarias");
 

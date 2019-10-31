@@ -1,5 +1,5 @@
 <?php
-
+require_once "./Models/propiedadModel.php";
 require_once "./Models/inmobiliariaModel.php";
 require_once "./Views/inmobiliariaView.php";
 require_once "Helpers/user.helper.php";
@@ -7,11 +7,13 @@ require_once "Helpers/user.helper.php";
 
 class inmobiliariaController {
     
+    private $modelProp;
     private $model;
     private $view;
     private $helper;
 
 	function __construct(){
+        $this->modelProp= new   propiedadModel();
         $this->model = new inmobiliariaModel();
         $this->view = new inmobiliariaView();
         $this->helper = new userHelper();
@@ -36,9 +38,9 @@ class inmobiliariaController {
         $ciudad = $_POST['ciudad'];
         $encargado = $_POST['encargado'];
         $direccion = $_POST['direc'];
-        $imagen = $_POST['image'];
+        $contacto = $_POST['contact'];
         if(!empty($ciudad) && !empty($encargado) && !empty($direccion)){
-            $this->model->aggInmobiliaria($ciudad, $encargado, $direccion, $imagen);
+            $this->model->aggInmobiliaria($ciudad, $encargado, $direccion, $contacto);
             header("Location: ver");
         }
         else{
@@ -48,16 +50,21 @@ class inmobiliariaController {
 
     public function deleteInmobiliaria($params = null){
         $idInmobiliaria=$params[':ID'];
-        $this->model->elimInmobiliaria($idInmobiliaria);
-        header("Location: ver");
+        $propiedades=$this->modelProp->getPropiedades($idInmobiliaria);
+        if($propiedades==null){
+            $this->model->elimInmobiliaria($idInmobiliaria);
+            header("Location: ver");
+        }else{
+            echo("<p class='error'>Primero debe eliminar las propiedades de esta  inmobiliaria</p>");
+        }
     }
 
     public function updateInmobiliaria($params = null) {
-        $idPropiedad = $params[':IDP']; 
+        $idInmobiliaria = $_POST['IDI']; 
         $direccion = $_POST['direc'];
         $ciudad = $_POST['city'];
         $encargado = $_POST['encargado'];
-        $imagen = $_POST['image'];
-        $this->model->update($idPropiedad,$ciudad,$encargado,$imagen,$direccion);
+        $contacto = $_POST['contact'];
+        $this->model->update($idInmobiliaria,$ciudad,$encargado,$contacto,$direccion);
     }
 }

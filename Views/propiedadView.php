@@ -20,14 +20,20 @@ class propiedadView{
         $this->Smarty->assign('id',$id);
         $this->Smarty->assign('iniciado',$iniciado);
         $this->Smarty->assign('inmobiliaria',$inmobiliaria);
+        $this->Smarty->assign('Logo','<img src="../img/anabelaltuna.png">');
+        $this->Smarty->assign('css','<link rel=stylesheet href="../css/style.css" type="text/css">');
         $this->Smarty->assign('title',$title);
         $this->Smarty->assign('propiedades',$propiedades);
         $this->Smarty->display("Templates/showPropiedades.tpl");
     }
 
     public function displayPropiedad($propiedad,$inmobiliaria,$iniciado){
+        $title="Anabel Altuna | Estudio Inmobiliario";
+        $this->Smarty->assign('title',$title); 
         $this->Smarty->assign('inmobiliaria',$inmobiliaria); 
         $this->Smarty->assign('iniciado',$iniciado);
+        $this->Smarty->assign('Logo','<img src="../img/anabelaltuna.png">');
+        $this->Smarty->assign('css','<link rel=stylesheet href="../css/style.css" type="text/css">');
         $this->Smarty->assign('propiedad',$propiedad);
         $this->Smarty->display("Templates/showPropiedad.tpl");
     }

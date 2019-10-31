@@ -14,18 +14,19 @@ class inmobiliariaModel{
         return $inmobiliarias =$sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function aggInmobiliaria($ciudad, $encargado, $direccion, $imagen) {
-        $inmobiliaria= $this->db->prepare("INSERT INTO inmobiliaria(ciudad,encargado,direccion,imagen) VALUES(?,?,?,?)");
-        $inmobiliaria->execute(array($ciudad, $encargado, $direccion, $imagen));
+    function aggInmobiliaria($ciudad, $encargado, $direccion, $contacto) {
+        $inmobiliaria= $this->db->prepare("INSERT INTO inmobiliaria(ciudad,encargado,direccion,contacto) VALUES(?,?,?,?)");
+        $inmobiliaria->execute(array($ciudad, $encargado, $direccion, $contacto));
     }
 
-    public function update($id,$ciudad,$encargado,$imagen,$direccion){
-        $query = $this->db->prepare('UPDATE inmobiliaria SET ciudad=? , encargado=? ,direccion =?, imagen=?  WHERE id = ?');
-        $query->execute(array($ciudad,$encargado,$direccion,$imagen,$id));
+    public function update($id,$ciudad,$encargado,$contacto,$direccion){
+        $query = $this->db->prepare('UPDATE inmobiliaria SET ciudad=? , encargado=? ,direccion =?, contacto=?  WHERE id = ?');
+        $query->execute(array($ciudad,$encargado,$direccion,$contacto,$id));
     }
 
     public function elimInmobiliaria($idInmobiliaria){
-        
+        $inmo= $this->db->prepare("DELETE FROM inmobiliaria WHERE id=?");
+        $inmo->execute(array($idInmobiliaria)); 
     }
 
     public function getInmobiliaria($id){

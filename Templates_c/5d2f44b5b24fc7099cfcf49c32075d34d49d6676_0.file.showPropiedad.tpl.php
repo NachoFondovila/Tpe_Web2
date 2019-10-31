@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-30 03:44:24
+/* Smarty version 3.1.33, created on 2019-10-31 22:23:39
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedad.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5db8f9089eb5f9_73181146',
+  'unifunc' => 'content_5dbb50dbc81402_83435781',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d2f44b5b24fc7099cfcf49c32075d34d49d6676' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedad.tpl',
-      1 => 1572403391,
+      1 => 1572556897,
       2 => 'file',
     ),
   ),
@@ -22,46 +22,50 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5db8f9089eb5f9_73181146 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dbb50dbc81402_83435781 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<ul>
-    <li> Direccion: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->direccion;?>
+    <ul class="list-group">
+        <li class="list-group-item">Dirección: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->direccion;?>
 </li>
-
-    <li> Tipo: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->tipo;?>
+        <li class="list-group-item">Tipo: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->tipo;?>
 </li>
+        <li class="list-group-item">Estado: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
+</li>
+        <?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+            <li class="list-group-item">Link de Imagen: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->imagen;?>
+</li>
+        <?php }?>
+    </ul>
     
-    <li> Estado <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
-</li>
 
-</ul>
+<?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Modificar Propiedad</span>
+</nav>
 
-
-    <form action="update" method="GET">
-
-        <h4>Modificar propiedad</h4>
-        
-        <div class=" row"> 
-            <label>direccion</label>
-            <input name="direc" type="text">
+<form class="p-4" action="<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
+/update" method="POST">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Dirección</label>
+            <input type="text" class="form-control" id="exampleDropdownFormEmail2" name="direc" >
         </div>
-        <div class=" row"> 
-            <label>tipo</label>
-            <input name="type" type="text">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Tipo</label>
+            <input name="type" type="text" class="form-control" id="exampleDropdownFormEmail2" >
         </div>
-        <div class=" row"> 
-            <label>Estado</label>
-            <input name="state" type="text">
+        <div class="form-group">
+            <label for="exampleDropdownFormPassword2">Estado</label>
+            <input name="state" type="text" class="form-control" id="exampleDropdownFormPassword2" >
         </div>
-        <div class=" row"> 
-            <label>Imagen</label>
-            <input name="image" type="text">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Imagen</label>
+            <input name="image" type="text" class="form-control" id="exampleDropdownFormEmail2" >
         </div>
-        
-        <button type="submit"> Modificar </button>
-
+        <button type="submit" class="btn btn-primary">Modificar</button>
     </form>
+</form> 
+<?php }?>
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

@@ -15,7 +15,7 @@ class Route{
         $this->params = [];
     }
 
-    public function match($url,$verb){//<---------------------------------------------¡?¡?¡?¡?¡?¡?¡?¡?
+    public function match($url,$verb){
         //compara las urls, a la que me redirigen y las que tengo prearmadas
         if($this->verb != $verb){
             return false;
@@ -64,7 +64,6 @@ class Router{
             }
         }
         if($this->defaultRoute !=null){
-            echo("defaultpage");
             $this->defaultRoute->run();
         }
     }

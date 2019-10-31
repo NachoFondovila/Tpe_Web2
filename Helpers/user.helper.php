@@ -22,7 +22,6 @@ class userHelper {
 
     public function checkLog($user) {
         if (!isset($_SESSION['USERNAME'])) {
-            //session_start();
             $this->login($user);
         }       
     }
