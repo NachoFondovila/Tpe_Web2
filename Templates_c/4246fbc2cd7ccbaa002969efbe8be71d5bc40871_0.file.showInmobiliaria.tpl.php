@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-31 19:49:42
+/* Smarty version 3.1.33, created on 2019-11-11 21:29:37
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showInmobiliaria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dbb2cc65d4243_68576819',
+  'unifunc' => 'content_5dc9c4b1cd1355_72065602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4246fbc2cd7ccbaa002969efbe8be71d5bc40871' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showInmobiliaria.tpl',
-      1 => 1572547730,
+      1 => 1573168122,
       2 => 'file',
     ),
   ),
@@ -21,10 +21,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:header.tpl' => 1,
     'file:verifyUser.tpl' => 1,
     'file:adminInmobiliaria.tpl' => 1,
+    'file:vue/csrvue.tpl' => 1,
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dbb2cc65d4243_68576819 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dc9c4b1cd1355_72065602 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -60,6 +61,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     <?php $_smarty_tpl->_subTemplateRender("file:adminInmobiliaria.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }?>
 
+<?php $_smarty_tpl->_subTemplateRender("file:vue/csrvue.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

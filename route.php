@@ -34,6 +34,10 @@ $r->addRoute("updateInmo","POST","inmobiliariaController","updateInmobiliaria");
 
 $r->addRoute("propiedad/:ID/update","POST","propiedadController","updatePropiedad");//anda
 
+$r->addRoute("propiedad/Api/","POST","propiedadController","updatePropiedad");//anda
+
+$r->addRoute("propiedad/:ID/addimage","POST","propiedadController","addPropiedadImage");
+
 $r->addRoute("propiedad/:ID/eliminar", "GET", "propiedadController","deletePropiedad");//anda
 
 $r->addRoute("inmobiliaria/eliminar/:ID", "GET", "inmobiliariaController","deleteInmobiliaria");//anda

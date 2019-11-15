@@ -1,28 +1,29 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-31 22:23:39
+/* Smarty version 3.1.33, created on 2019-11-15 22:58:19
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedad.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dbb50dbc81402_83435781',
+  'unifunc' => 'content_5dcf1f7b987f91_03873123',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d2f44b5b24fc7099cfcf49c32075d34d49d6676' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedad.tpl',
-      1 => 1572556897,
+      1 => 1573854905,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:header.tpl' => 1,
+    'file:vue/addComent.tpl' => 1,
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dbb50dbc81402_83435781 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dcf1f7b987f91_03873123 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <ul class="list-group">
@@ -33,19 +34,44 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
         <li class="list-group-item">Estado: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
 </li>
         <?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
-            <li class="list-group-item">Link de Imagen: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->imagen;?>
+        
+            <?php
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['cant_im']->value-1+1 - (0) : 0-($_smarty_tpl->tpl_vars['cant_im']->value-1)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 0, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
+                <li class="list-group-item">Link de Imagen: <?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->ruta;?>
 </li>
+            <?php }
+}
+?>
+
         <?php }?>
     </ul>
     
 
 <?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Agregar imagen</span>
+</nav>
+
+<form class="p-4" action="<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
+/addimage" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleDropdownFormEmail2">Imagen</label>
+        <input name="imago" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+
+
 <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">Modificar Propiedad</span>
 </nav>
 
 <form class="p-4" action="<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
-/update" method="POST">
+/update" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleDropdownFormEmail2">Dirección</label>
             <input type="text" class="form-control" id="exampleDropdownFormEmail2" name="direc" >
@@ -60,12 +86,13 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
         </div>
         <div class="form-group">
             <label for="exampleDropdownFormEmail2">Imagen</label>
-            <input name="image" type="text" class="form-control" id="exampleDropdownFormEmail2" >
+            <input name="image" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
         </div>
         <button type="submit" class="btn btn-primary">Modificar</button>
-    </form>
 </form> 
-<?php }?>
+<?php }
+$_smarty_tpl->_subTemplateRender("file:vue/addComent.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

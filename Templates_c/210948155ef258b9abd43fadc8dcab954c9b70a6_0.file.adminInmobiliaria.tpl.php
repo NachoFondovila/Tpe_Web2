@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-10-31 21:58:51
+/* Smarty version 3.1.33, created on 2019-11-11 21:29:38
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\adminInmobiliaria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dbb4b0b44ee38_20744037',
+  'unifunc' => 'content_5dc9c4b21daea1_80552911',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5dbb4b0b44ee38_20744037 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dc9c4b21daea1_80552911 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">Agregar Inmobiliaria</span>
 </nav>

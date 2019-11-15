@@ -19,5 +19,6 @@
     {include file="adminInmobiliaria.tpl"}
 {/if}
 
+{include file="vue/csrvue.tpl"}
 
 {include file="footer.tpl"}

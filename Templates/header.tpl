@@ -8,6 +8,10 @@
         {$css}
         <title>{$title}</title>
     </head>
+    
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <body>
         <div class="logo">
             <a href= "http://localhost/GitHub/Tpe_Web2/ver"> <h2>Inicio</h2> </a>

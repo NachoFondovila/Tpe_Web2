@@ -14,7 +14,7 @@ class inmobiliariaController {
 
 	function __construct(){
         $this->modelProp= new   propiedadModel();
-        $this->model = new inmobiliariaModel();
+        $this->model = new inmobiliariaModel(); 
         $this->view = new inmobiliariaView();
         $this->helper = new userHelper();
     }
@@ -47,6 +47,11 @@ class inmobiliariaController {
             $this->view->displayError("faltan completar los campos obligatorios.");
         }
     }
+    
+    public function showComents(){
+        
+        $this->view->showComents();
+    }
 
     public function deleteInmobiliaria($params = null){
         $idInmobiliaria=$params[':ID'];
@@ -58,13 +63,17 @@ class inmobiliariaController {
             echo("<p class='error'>Primero debe eliminar las propiedades de esta  inmobiliaria</p>");
         }
     }
-
+    
     public function updateInmobiliaria($params = null) {
-        $idInmobiliaria = $_POST['IDI']; 
-        $direccion = $_POST['direc'];
-        $ciudad = $_POST['city'];
-        $encargado = $_POST['encargado'];
-        $contacto = $_POST['contact'];
-        $this->model->update($idInmobiliaria,$ciudad,$encargado,$contacto,$direccion);
+        $iniciado=$this->helper->getLoggedUser();
+        if(isset($iniciado)){
+            $idInmobiliaria = $_POST['IDI']; 
+            $direccion = $_POST['direc'];
+            $ciudad = $_POST['city'];
+            $encargado = $_POST['encargado'];
+            $contacto = $_POST['contact'];
+            $this->model->update($idInmobiliaria,$ciudad,$encargado,$contacto,$direccion);
+            header("Location: ver");
+        }
     }
 }

@@ -4,17 +4,35 @@
         <li class="list-group-item">Tipo: {$propiedad->tipo}</li>
         <li class="list-group-item">Estado: {$propiedad->estado}</li>
         {if isset($iniciado)}
-            <li class="list-group-item">Link de Imagen: {$propiedad->imagen}</li>
+        
+            {for $i=0 to $cant_im -1}
+                <li class="list-group-item">Link de Imagen: {$imgs[$i]->ruta}</li>
+            {/for}
+
         {/if}
     </ul>
     
 
 {if isset($iniciado)}
+
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Agregar imagen</span>
+</nav>
+
+<form class="p-4" action="{$propiedad->id}/addimage" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="exampleDropdownFormEmail2">Imagen</label>
+        <input name="imago" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+
+
 <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">Modificar Propiedad</span>
 </nav>
 
-<form class="p-4" action="{$propiedad->id}/update" method="POST">
+<form class="p-4" action="{$propiedad->id}/update" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleDropdownFormEmail2">Dirección</label>
             <input type="text" class="form-control" id="exampleDropdownFormEmail2" name="direc" >
@@ -29,11 +47,11 @@
         </div>
         <div class="form-group">
             <label for="exampleDropdownFormEmail2">Imagen</label>
-            <input name="image" type="text" class="form-control" id="exampleDropdownFormEmail2" >
+            <input name="image" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
         </div>
         <button type="submit" class="btn btn-primary">Modificar</button>
-    </form>
 </form> 
 {/if}
+{include file="vue/addComent.tpl"}
 
 {include file="footer.tpl"}
