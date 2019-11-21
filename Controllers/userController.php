@@ -15,9 +15,31 @@ class userController{
         $this->helper = new userHelper();
     }
 
+    public function showUsers(){
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            $users=$this->model->getUsers();
+            $this->view->displayUsers($users,$user);
+        }
+    }
+
     public function showLogin() {
-        $iniciado=$this->helper->getLoggedUser();
-        $this->view->showLogin("",$iniciado);
+        $user=$this->helper->getLoggedUser();
+        $this->view->showLogin($user);
+    
+    }
+
+    public function deleteUser($params = null) {
+        $id=$params[':ID'];
+        $this->model->delete($id);
+        header("Location: ".BASE_URL."users");
+    }
+   
+    public function updateUser($params = null) {
+        $id=$params[':ID'];
+        $bool=$params[':BOOL'];
+        $this->model->updatePermiso($id,$bool);
+        header("Location: ".BASE_URL."users");
     }
 
     public function verifyUser() {
@@ -38,27 +60,30 @@ class userController{
     }
 
     public function registracion(){
-
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $ciudad= $_POST['ciudad'];
-        $mail=$_POST['email'];
-
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        
-        if(isset($mail) && !($this->model->getByMail($mail)) ){//si el usurio exite, y si no esta ese mail en la db
-            $this->model->addUser($username,$mail,$hash,$ciudad);
-            $user=$this->model->getByMail($mail);
-            $this->helper->login($user);
-            $name=$user->nombre;
-            var_dump($name);
-
-            header("Location: ". VER );
+        $user=$this->helper->getLoggedUser();
+        if( $user == null){
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $ciudad= $_POST['ciudad'];
+            $mail=$_POST['email'];
+            $habilitado=false;
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            
+            if(isset($mail) && !($this->model->getByMail($mail)) ){//si el usurio exite, y si no esta ese mail en la db
+                $this->model->addUser($username,$mail,$hash,$ciudad,$habilitado);
+                $user=$this->model->getByMail($mail);
+                $this->helper->login($user);
+                $name=$user->nombre;
+                header("Location: ". VER );
+            }
+            else{
+                $error="El mail con el que se intenta registrar ya fue utilizado";
+                $this->view->displayError($error);
+            }
         }
         else{
-            $error="El mail con el que se intenta registrar ya fue utilizado";
-            echo($error);
-            header("Location:" . VER/$error); 
+            $error="Ya hay un usuario iniciado,cierre primero la sesion y luego vuelva a intentarlo";
+            $this->view->displayError($error);
         }
     }
 

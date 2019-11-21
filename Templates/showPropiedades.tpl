@@ -12,11 +12,11 @@
                     {if $imgs[$i]->id_propiedad_fk == $propiedad->id }
                         <img class="card-img-top" src="../{$imgs[$i]->ruta}">
                     {/if}
-                {/for} 
+                {/for}
                 <div class="card-body">
                     <h5 class="card-title">En {$propiedad->estado}</h5>
                     {* <p class="card-text">Propiedad ubicada en la calle {$propiedad->direccion} en la ciudad de {$inmobiliaria->ciudad}</p> *}
-                    {if ($iniciado)}
+                    {if ($user['USER_TYPE'])}
                         <a class="btn btn-primary" href="{$base}propiedad/{$propiedad->id}/eliminar">Eliminar</a>
                     {/if}
                         <a class="btn btn-primary"href="{$base}propiedad/{$propiedad->id}">Ver detalles</a>
@@ -28,7 +28,7 @@
     {/if}
 </div>
 
-{if isset($iniciado)}
+{if ($user['USER_TYPE'])}
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Agregar Propiedad</span>
     </nav>

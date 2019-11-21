@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-11 21:29:37
+/* Smarty version 3.1.33, created on 2019-11-20 21:53:28
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showInmobiliaria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dc9c4b1cd1355_72065602',
+  'unifunc' => 'content_5dd5a7c8f2bce4_78161095',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4246fbc2cd7ccbaa002969efbe8be71d5bc40871' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showInmobiliaria.tpl',
-      1 => 1573168122,
+      1 => 1574283203,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dc9c4b1cd1355_72065602 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dd5a7c8f2bce4_78161095 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -43,7 +43,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['inmobiliaria']->value) {
 inmobiliaria/<?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->id;?>
 "><li><?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->ciudad;?>
 </li></a>
-        <?php if (($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+        <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
             <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 inmobiliaria/eliminar/<?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->id;?>
 " class="btn btn-outline-danger">Eliminar</a>
@@ -54,16 +54,15 @@ inmobiliaria/eliminar/<?php echo $_smarty_tpl->tpl_vars['inmobiliaria']->value->
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </ul>
 
-<?php if (!($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+<?php if (!($_smarty_tpl->tpl_vars['user']->value)) {?>
     <?php $_smarty_tpl->_subTemplateRender("file:verifyUser.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-    <?php } else { ?>
-    <?php $_smarty_tpl->_subTemplateRender("file:adminInmobiliaria.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+    <?php } elseif (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
+        <?php $_smarty_tpl->_subTemplateRender("file:adminInmobiliaria.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }?>
 
-<?php $_smarty_tpl->_subTemplateRender("file:vue/csrvue.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
 
-<?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+<?php $_smarty_tpl->_subTemplateRender("file:vue/csrvue.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }
 }

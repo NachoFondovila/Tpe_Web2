@@ -1,15 +1,35 @@
 "use strict"
+
+console.log("form");
+
 let apiURL="http://anabel-altuna-coment.com/api/coments";
 
 let app=new Vue({
     el:"#tpl_VUE",
     data:{
+        id_prop= 'id_prop',
         subtitle:'subtitulo',
         comments:[getComents()],
         inicializado: true,
     }
 })
 
+let form = document.getElementById("form-coments");
+if(form != null){
+    form.addEventListener('submit',async function addComent(e){
+        e.preventDefault();
+        
+        let data= {
+            id_prop= document.getElementById("id_prop").value,
+            id_user= document.getElementById("user_id").value,
+            puntuacion= document.getElementById("puntuacion").value,
+            comentario= document.getElementById("comentario").value,
+        }
+        console.log(id_prop);
+
+
+    })
+}
 async function getComents(){
     try{
         let rta = await fetch (apiURL);

@@ -16,7 +16,7 @@ class comentsModel{
     }
 
     function addCom($idProp,$puntuacion,$fecha,$comentario,$user){
-        var_dump($idProp,$puntuacion,$fecha,$comentario,$user);die();
+        var_dump($idProp,$puntuacion,$fecha,$comentario,$user);die();   
         $sentencia=$this->API->prepare('INSERT INTO comentarios(idProp,puntuacion,fecha,comentario,user) VALUES (?,?,?,?,?)');
         $sentencia->execute(array($idProp,$puntuacion,$fecha,$comentario,$user));
     }

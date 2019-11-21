@@ -8,17 +8,17 @@ class propiedadView{
 
     public function __construct(){
         $Helper= new userHelper();
-        $userName= $Helper->getLoggedUser();
+        $user= $Helper->getLoggedUser();
 
         $this->Smarty=new Smarty();
         $this->Smarty->assign('base',BASE_URL);//crear variables en smarty
-        $this->Smarty->assign('userName', $userName);
+        $this->Smarty->assign('user', $user);
 
     }
     
-    public function displayPropiedades($propiedades,$id,$title,$inmobiliaria,$iniciado,$imgs){
+    public function displayPropiedades($propiedades,$id,$title,$inmobiliaria,$user,$imgs){
         $this->Smarty->assign('id',$id);
-        $this->Smarty->assign('iniciado',$iniciado);
+        $this->Smarty->assign('user',$user);
         if($imgs){
             $cant=count($imgs);
             $this->Smarty->assign('imgs',$imgs);
@@ -32,7 +32,7 @@ class propiedadView{
         $this->Smarty->display("Templates/showPropiedades.tpl");
     }
 
-    public function displayPropiedad($propiedad,$inmobiliaria,$iniciado,$imgs){
+    public function displayPropiedad($propiedad,$inmobiliaria,$user,$imgs){
         $title="Anabel Altuna | Estudio Inmobiliario";
         $this->Smarty->assign('title',$title); 
         if($imgs){
@@ -42,7 +42,7 @@ class propiedadView{
             // var_dump($imgs[0]->ruta);die();
         }
         $this->Smarty->assign('inmobiliaria',$inmobiliaria); 
-        $this->Smarty->assign('iniciado',$iniciado);
+        $this->Smarty->assign('user',$user);
         $this->Smarty->assign('Logo','<img src="../img/anabelaltuna.png">');
         $this->Smarty->assign('css','<link rel=stylesheet href="../css/style.css" type="text/css">');
         $this->Smarty->assign('propiedad',$propiedad);

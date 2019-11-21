@@ -16,14 +16,14 @@ class inmobiliariaView{
         echo($msj);
     }
     
-    public function displayInmobiliarias($inmobiliarias,$iniciado){
+    public function displayInmobiliarias($inmobiliarias,$user){
         $title="Anabel Altuna | Estudio Inmobiliario";
         $titulo="title";
         $this->Smarty->assign('css','<link rel=stylesheet href="css/style.css" type="text/css">');
         $this->Smarty->assign('inmobiliarias',$inmobiliarias);
         $this->Smarty->assign('Logo','<img src="img/anabelaltuna.png">');
         $this->Smarty->assign('title',$title);
-        $this->Smarty->assign('iniciado',$iniciado);
+        $this->Smarty->assign('user',$user);
         $this->Smarty->display("Templates/showInmobiliaria.tpl");
     }
 }

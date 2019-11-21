@@ -1,29 +1,28 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-15 22:58:19
+/* Smarty version 3.1.33, created on 2019-11-21 20:37:25
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedad.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dcf1f7b987f91_03873123',
+  'unifunc' => 'content_5dd6e775ad58b6_75629225',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d2f44b5b24fc7099cfcf49c32075d34d49d6676' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedad.tpl',
-      1 => 1573854905,
+      1 => 1574364556,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:header.tpl' => 1,
-    'file:vue/addComent.tpl' => 1,
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dcf1f7b987f91_03873123 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dd6e775ad58b6_75629225 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <ul class="list-group">
@@ -33,8 +32,7 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
 </li>
         <li class="list-group-item">Estado: <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
 </li>
-        <?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
-        
+        <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
             <?php
 $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['cant_im']->value-1+1 - (0) : 0-($_smarty_tpl->tpl_vars['cant_im']->value-1)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
 if ($_smarty_tpl->tpl_vars['i']->total > 0) {
@@ -42,15 +40,30 @@ for ($_smarty_tpl->tpl_vars['i']->value = 0, $_smarty_tpl->tpl_vars['i']->iterat
 $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
                 <li class="list-group-item">Link de Imagen: <?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->ruta;?>
 </li>
+                <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
+/elim/<?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->id;?>
+">Eliminar</a>
             <?php }
 }
 ?>
-
+        <?php } else { ?>
+                <?php
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['cant_im']->value-1+1 - (0) : 0-($_smarty_tpl->tpl_vars['cant_im']->value-1)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 0, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
+                    <?php if ($_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->id_propiedad_fk == $_smarty_tpl->tpl_vars['propiedad']->value->id) {?>
+                        <img class="card-img-top" src="../<?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->ruta;?>
+">
+                    <?php }?>
+                <?php }
+}
+?> 
         <?php }?>
     </ul>
     
 
-<?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+<?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
 
 <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">Agregar imagen</span>
@@ -60,7 +73,7 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 /addimage" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="exampleDropdownFormEmail2">Imagen</label>
-        <input name="imago" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
+        <input name="imago[]" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
     </div>
     <button type="submit" class="btn btn-primary">Agregar</button>
 </form>
@@ -90,9 +103,31 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
         </div>
         <button type="submit" class="btn btn-primary">Modificar</button>
 </form> 
-<?php }
-$_smarty_tpl->_subTemplateRender("file:vue/addComent.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
+<?php }?>
+
+<?php if (($_smarty_tpl->tpl_vars['user']->value['USERNAME'] && $_smarty_tpl->tpl_vars['user']->value['USER_TYPE'] == 0)) {?>
+    <form class="p-4" id="form-coments" action="addCom" method=POST>
+
+        <label for="exampleDropdownFormEmail2">Puntuacion</label>
+        <select class="form-group" id="puntuacion" name="puntuacion">
+            <option value="1">1</option>            
+            <option value="2">2</option>            
+            <option value="3">3</option>            
+            <option value="4">4</option>            
+            <option value="5">5</option>            
+        </select>
+
+                <input id="id_prop" type="hidden" value=<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
+>
+
+        <label for="exampleDropdownFormEmail2">Comentario</label>
+        <textarea class="form-group" id="comentario" name="comentario" rows="5"></textarea>
+         
+        <button type="submit" class="btn btn-primary">Comentar</button>
+
+    </form>
+
+    <?php }?>
 
 <?php $_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }

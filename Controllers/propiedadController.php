@@ -21,21 +21,21 @@ class propiedadController {
 
     function showPropiedades($params = []){
         if (!isset($_SESSION['USERNAME'])) {
-            $iniciado=$this->helper->getLoggedUser();
+            $user=$this->helper->getLoggedUser();
         }
         else{
-            $iniciado= $_SESSION['USERNAME'];
+            $user= $_SESSION;
         }
         $title="Anabel Altuna | Estudio Inmobiliario";
         $idInmobiliaria = $params[':FK'];
         $propiedades=$this->model->getPropiedades($idInmobiliaria);//le pido al model que me traiga de la DB el arreglo de propiedades
         $inmobiliaria= $this->modelInmo->getInmobiliaria($idInmobiliaria);
         $imagenes=$this->model->getAllImgs();
-        $this->view->displayPropiedades($propiedades,$idInmobiliaria,$title,$inmobiliaria,$iniciado,$imagenes);//le envio al view el arreglo para que lo muestre 
+        $this->view->displayPropiedades($propiedades,$idInmobiliaria,$title,$inmobiliaria,$user,$imagenes);//le envio al view el arreglo para que lo muestre 
     }
 
     function showPropiedad($params=null){
-        $iniciado=$this->helper->getLoggedUser();
+        $user=$this->helper->getLoggedUser();
         $idPropiedad= $params[':ID'];
         $propiedad=$this->model->getPropiedad($idPropiedad);
         $imagenes=$this->model->getImagenes($idPropiedad);
@@ -45,18 +45,15 @@ class propiedadController {
             // if($imagenes){
 
             // }
-            $this->view->displayPropiedad($propiedad,$inmobiliaria,$iniciado,$imagenes);
+            $this->view->displayPropiedad($propiedad,$inmobiliaria,$user,$imagenes);
         }
     }
     
     function addPropiedadImage($params=null){
         $idPropiedad = $params[':ID'];
-        // $image= $_FILES['imagen'];
-        // if($_FILES['imagen']!=null){
-        var_dump($_FILES['imago']);die();
-        if(sonIMG($_FILES['image']['type'])){
-            $this->model->addImage($idPropiedad,$_FILES['imagen']);
-                header("location: http://localhost/GitHub/Tpe_Web2/propiedad/$idPropiedad");
+        if($this->sonImg($_FILES['imago'])) {
+            $this->model->subirImagenes($_FILES['imago'],$idPropiedad);
+            header("location: http://localhost/GitHub/Tpe_Web2/propiedad/$idPropiedad");/////////////
             }
             else{
                 $this->view->displayError("Formato de archivo no aceptado");
@@ -68,7 +65,7 @@ class propiedadController {
     }
 
     public function showComents($params=null){
-        $iniciado=$this->helper->getLoggedUser();
+        $user=$this->helper->getLoggedUser();
     }
 
     public function updatePropiedad($params = null) {
@@ -76,20 +73,26 @@ class propiedadController {
         $direccion = $_POST['direc'];
         $tipo = $_POST['type'];
         $estado = $_POST['state'];
-        $imagen = $_FILES['image'];
-        var_dump($_FILES['image']);die();
-
-        if(sonIMG($_FILES['image']['type'])){
-            if(!empty($direccion) && !empty($tipo) && !empty($estado)){
-                $this->model->update($idPropiedad,$direccion,$estado,$imagen,$tipo);
-                header("location: http://localhost/GitHub/Tpe_Web2/propiedad/$idPropiedad"); 
+        $imgs= $_FILES['image'];
+        if(!empty($direccion) && !empty($tipo) && !empty($estado)){
+            if($imgs['name'] != ""){
+                if($this->sonImg($imgs)){
+                    $this->model->update($idPropiedad,$direccion,$estado,$imgs,$tipo);
+                    header("location:".BASE_URL. "propiedad/$idPropiedad"); 
+                }
+                else{
+                    $this->view->displayError("Formato de archivo no aceptado");
+                }
             }
             else{
-                $this->view->displayError("faltan completar los campos obligatorios");
+                // var_dump($imagen);die();
+                $imagen=null;
+                $this->model->update($idPropiedad,$direccion,$estado,$imagen,$tipo);
+                header("location: http://localhost/GitHub/Tpe_Web2/propiedad/$idPropiedad");/////////////////////////////////////////
             }
         }
         else{
-            $this->view->displayError("Formato de archivo no aceptado");
+            $this->view->displayError("faltan completar los campos obligatorios");
         }
     }
 
@@ -100,10 +103,11 @@ class propiedadController {
         $estado = $_POST['state'];
         // $imagen = $_POST['image'];  no se utiliza mas para files
         $imgs=$_FILES['image'];
+        // var_dump($_FILES);die();
         if(!empty($direccion) && !empty($tipo) && !empty($estado)){
             if($this->sonImg($imgs)) {
                 $this->model->aggPropiedad($direccion,$estado,$tipo,$imgs,$idInmo);
-                header("Location: ".BASE_URL."propiedad/{$idInmo}");
+                header("Location: ".BASE_URL."inmobiliaria/{$idInmo}");
             }
             else{
                 $this->view->displayError("Formato de archivo no aceptado");
@@ -117,20 +121,38 @@ class propiedadController {
     function deletePropiedad($params = []){
         $idPropiedad=$params[':ID'];
         // $idInmobiliaria=$params[':FK'];
-        $this->model->elimPropiedad($idPropiedad);
+        $this->model->elimPropiedad($idPropiedad);        
         header("Location: ".BASE_URL."ver");
+    }
+
+    function deleteImage($params = []){
+        $idPropiedad=$params[':ID'];
+        $img=$params[':IMG'];
+        $this->model->elimImage($img);
+        $propiedad=$this->model->getPropiedad($idPropiedad);
+        header("Location: ".BASE_URL."inmobiliaria/{$propiedad->id_inmobiliaria_fk}");
     }
     
      function sonImg($imagenes){
         $cantTotal=count($imagenes['type']);
         $areImg=true;
-        for($i=0;$i<$cantTotal;$i++) {
-            $imagenesTipos=$imagenes['type'][$i];
+        if ($cantTotal > 1){
+            for($i=0;$i<$cantTotal;$i++) {
+                $imagenesTipos=$imagenes['type'][$i];
                 if($imagenesTipos == 'image/jpeg' || $imagenesTipos == 'image/jpg' || $imagenesTipos =='image/png') {
                     $areImg=true;
                 }else{
                     $areImg=false;
                 }
+            }
+        }
+        else{
+            $imgType=$imagenes['type'];
+            if($imgType == 'image/jpeg' || $imgType == 'image/jpg' || $imgType =='image/png') {
+                $areImg=true;
+            }else{
+                $areImg=false;
+            }
         }
         return $areImg;
     }

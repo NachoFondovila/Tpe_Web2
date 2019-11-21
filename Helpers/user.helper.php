@@ -11,6 +11,7 @@ class userHelper {
             $_SESSION['USERNAME'] = $user->nombre;
             $_SESSION['MAIL'] = $user->mail;
             $_SESSION['PASSWORD'] = $user->password;
+            $_SESSION['USER_TYPE'] = $user->habilitado;
     }
 
     public function logout() {
@@ -27,11 +28,12 @@ class userHelper {
     }
     
     public function getLoggedUser() {
-        if (!isset($_SESSION['USERNAME'])) {
+        if (! isset($_SESSION['USERNAME'])) {
            return null;
         }
+        // var_dump($_SESSION);die();
         else{
-            return $_SESSION['USERNAME'];
+            return $_SESSION;
         }
     }
 }

@@ -24,14 +24,14 @@ class inmobiliariaController {
     }
 
     function showInmobiliarias($params = []){
-        $iniciado=$this->helper->getLoggedUser();
+        $user=$this->helper->getLoggedUser();
         $inmobiliarias=$this->model->getInmobiliarias();//le pido al model que me traiga de la DB el arreglo de inmobiliarias
         
         if (isset($_GET['error']) && $_GET['error'] == "auth" ) {
             $error = "Usuario o contraseña incorrecta";
             var_dump($error);
-        } 
-        $this->view->displayInmobiliarias($inmobiliarias,$iniciado);//le envio al view el arreglo para que lo muestre y mi usuario iniciado
+        }
+        $this->view->displayInmobiliarias($inmobiliarias,$user);//le envio al view el arreglo para que lo muestre y mi usuario iniciado
     }
     
     function addInmobiliaria(){
@@ -65,8 +65,8 @@ class inmobiliariaController {
     }
     
     public function updateInmobiliaria($params = null) {
-        $iniciado=$this->helper->getLoggedUser();
-        if(isset($iniciado)){
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
             $idInmobiliaria = $_POST['IDI']; 
             $direccion = $_POST['direc'];
             $ciudad = $_POST['city'];

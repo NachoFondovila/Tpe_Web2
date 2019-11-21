@@ -32,6 +32,7 @@ abstract class ApiController {
 
     public function addComent($params = []){
         $idProp=$params[':ID'];
+        var_dump($idProp);die();
         $puntuacion = $_POST['puntuacion'];
         $fecha = $_POST['fecha'];
         $comentario = $_POST['comentario'];

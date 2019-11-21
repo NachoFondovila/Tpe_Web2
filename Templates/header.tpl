@@ -13,18 +13,32 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <body>
+
+    <input type="hidden" id="user_id" value={$user['ID']}>
+
         <div class="logo">
             <a href= "http://localhost/GitHub/Tpe_Web2/ver"> <h2>Inicio</h2> </a>
             {$Logo}
         </div>
             <ul class="nav nav-tabs">
-                {if !($iniciado)}
-                <li class="nav-item">
-                    <a class="nav-link active">Visitante</a>
-                    <a href="{$base}login" class="nav-link">Registrarse</a>
-                    {else}
-                    <a class="nav-link active">{$iniciado}</a>
-                    <a class="nav-link" href="{$base}logout">Cerrar Sesión</a>
-                </li>
+                {if ($user['USERNAME']== '')}
+                    <li class="nav-item">
+                        <a class="nav-link active">Visitante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{$base}login" class="nav-link">Registrarse</a>
+                    </li>
+                    {else}    
+                    <li class="nav-item">
+                        <a class="nav-link active">{$user['USERNAME']}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{$base}logout">Cerrar Sesión</a>
+                    </li>
+                {/if}
+                {if ($user['USER_TYPE'])}
+                    <li class="nav-item">
+                        <a href="{$base}users" class="nav-link">Admininistrar Usuarios</a>
+                    </li>
                 {/if}
             </ul>

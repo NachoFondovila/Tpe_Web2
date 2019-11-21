@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-15 22:58:12
+/* Smarty version 3.1.33, created on 2019-11-20 22:20:21
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedades.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dcf1f74cdfdc5_12140774',
+  'unifunc' => 'content_5dd5ae1533cae0_07466026',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1244eb92300e960176a39df39bd6dbf5cbe0c8be' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedades.tpl',
-      1 => 1573855066,
+      1 => 1574284726,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dcf1f74cdfdc5_12140774 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dd5ae1533cae0_07466026 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -50,11 +50,11 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
                     <?php }?>
                 <?php }
 }
-?> 
+?>
                 <div class="card-body">
                     <h5 class="card-title">En <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
 </h5>
-                                        <?php if (($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+                                        <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
                         <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 propiedad/<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
 /eliminar">Eliminar</a>
@@ -73,7 +73,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     <?php }?>
 </div>
 
-<?php if (isset($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
+<?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Agregar Propiedad</span>
     </nav>

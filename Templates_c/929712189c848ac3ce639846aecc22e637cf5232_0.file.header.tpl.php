@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-11 21:28:09
+/* Smarty version 3.1.33, created on 2019-11-20 23:56:43
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dc9c459c84613_20200837',
+  'unifunc' => 'content_5dd5c4ab373163_46890156',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '929712189c848ac3ce639846aecc22e637cf5232' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\header.tpl',
-      1 => 1573164695,
+      1 => 1574290602,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5dc9c459c84613_20200837 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dd5c4ab373163_46890156 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,23 +40,39 @@ function content_5dc9c459c84613_20200837 (Smarty_Internal_Template $_smarty_tpl)
 >
 
     <body>
+
+    <input type="hidden" id="user_id" value=<?php echo $_smarty_tpl->tpl_vars['user']->value['ID'];?>
+>
+
         <div class="logo">
             <a href= "http://localhost/GitHub/Tpe_Web2/ver"> <h2>Inicio</h2> </a>
             <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
 
         </div>
             <ul class="nav nav-tabs">
-                <?php if (!($_smarty_tpl->tpl_vars['iniciado']->value)) {?>
-                <li class="nav-item">
-                    <a class="nav-link active">Visitante</a>
-                    <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+                <?php if (($_smarty_tpl->tpl_vars['user']->value['USERNAME'] == '')) {?>
+                    <li class="nav-item">
+                        <a class="nav-link active">Visitante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 login" class="nav-link">Registrarse</a>
-                    <?php } else { ?>
-                    <a class="nav-link active"><?php echo $_smarty_tpl->tpl_vars['iniciado']->value;?>
+                    </li>
+                    <?php } else { ?>    
+                    <li class="nav-item">
+                        <a class="nav-link active"><?php echo $_smarty_tpl->tpl_vars['user']->value['USERNAME'];?>
 </a>
-                    <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 logout">Cerrar Sesión</a>
-                </li>
+                    </li>
+                <?php }?>
+                <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
+                    <li class="nav-item">
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+users" class="nav-link">Admininistrar Usuarios</a>
+                    </li>
                 <?php }?>
             </ul><?php }
 }
