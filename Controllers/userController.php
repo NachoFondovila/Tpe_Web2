@@ -35,7 +35,7 @@ class userController{
         header("Location: ".BASE_URL."users");
     }
    
-    public function updateUser($params = null) {
+    public function updateUser($params = null) { // tengo que consultar si soy administrador ??
         $id=$params[':ID'];
         $bool=$params[':BOOL'];
         $this->model->updatePermiso($id,$bool);
@@ -44,9 +44,7 @@ class userController{
 
     public function verifyUser() {
         $contraseña = $_POST['password'];
-
         $user = $this->model->getByMail($_POST['username']);
-
         if (password_verify($contraseña, $user->password)) {// encontró un user con el username que mandó, y tiene la misma contraseña
             $this->helper->checkLog($user);
             header("Location: ver");  
@@ -54,8 +52,6 @@ class userController{
         else {
             $error="Login incorrecto";
             header("Location: ver?error=auth");  
-
-            //$this->view->showLogin($error);
         }
     }
 
@@ -82,7 +78,7 @@ class userController{
             }
         }
         else{
-            $error="Ya hay un usuario iniciado,cierre primero la sesion y luego vuelva a intentarlo";
+            $error="Ya hay un usuario iniciado, cierre primero la sesión y luego vuelva a intentarlo";
             $this->view->displayError($error);
         }
     }

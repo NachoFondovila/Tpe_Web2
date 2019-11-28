@@ -1,18 +1,20 @@
 <?php
     require_once('Router.php');
-    require_once('apiController.php');
+    require_once('api/apiComentsController.php');
     
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
     $router = new Router();
     // rutas
-    $router->addRoute("comments/:ID", "GET", "apiController", "getComents");
-
-    $router->addRoute("comments/:ID", "POST", "apiController", "addComent");
+    $router->addRoute("getComments/:ID", "GET", "apiComentsController", "getComents");
     
-    $router->addRoute("comments/:ID", "DELETE", "apiController", "deleteTask");
+    $router->addRoute("getComent/:ID", "GET", "apiComentsController", "getComent");
     
-    $router->addRoute("propiedad/:ID/addCom","POST","apiController","addComent");
-
+    $router->addRoute("elimComent/:ID", "DELETE", "apiComentsController", "deleteCom");
+    
+    $router->addRoute("addCom","POST","apiComentsController","addComent");
+    
+    $router->addRoute("porcent/:ID","GET","apiComentsController","getPorcentaje");
+   
     //run
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 

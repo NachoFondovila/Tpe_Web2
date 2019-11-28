@@ -12,8 +12,8 @@ class inmobiliariaController {
     private $view;
     private $helper;
 
-	function __construct(){
-        $this->modelProp= new   propiedadModel();
+    function __construct(){
+        $this->modelProp= new propiedadModel();
         $this->model = new inmobiliariaModel(); 
         $this->view = new inmobiliariaView();
         $this->helper = new userHelper();
@@ -25,13 +25,11 @@ class inmobiliariaController {
 
     function showInmobiliarias($params = []){
         $user=$this->helper->getLoggedUser();
-        $inmobiliarias=$this->model->getInmobiliarias();//le pido al model que me traiga de la DB el arreglo de inmobiliarias
-        
+        $inmobiliarias=$this->model->getInmobiliarias();
         if (isset($_GET['error']) && $_GET['error'] == "auth" ) {
             $error = "Usuario o contraseña incorrecta";
-            var_dump($error);
         }
-        $this->view->displayInmobiliarias($inmobiliarias,$user);//le envio al view el arreglo para que lo muestre y mi usuario iniciado
+        $this->view->displayInmobiliarias($inmobiliarias,$user);
     }
     
     function addInmobiliaria(){
@@ -41,7 +39,7 @@ class inmobiliariaController {
         $contacto = $_POST['contact'];
         if(!empty($ciudad) && !empty($encargado) && !empty($direccion)){
             $this->model->aggInmobiliaria($ciudad, $encargado, $direccion, $contacto);
-            header("Location: ver");
+            header("Location:" . BASE_URL . "ver");
         }
         else{
             $this->view->displayError("faltan completar los campos obligatorios.");
@@ -58,9 +56,9 @@ class inmobiliariaController {
         $propiedades=$this->modelProp->getPropiedades($idInmobiliaria);
         if($propiedades==null){
             $this->model->elimInmobiliaria($idInmobiliaria);
-            header("Location: ver");
+            header("Location:" . BASE_URL . "ver");
         }else{
-            echo("<p class='error'>Primero debe eliminar las propiedades de esta  inmobiliaria</p>");
+            $this->view->displayError("Primero debe eliminar las propiedades de esta  inmobiliaria");
         }
     }
     
@@ -73,7 +71,7 @@ class inmobiliariaController {
             $encargado = $_POST['encargado'];
             $contacto = $_POST['contact'];
             $this->model->update($idInmobiliaria,$ciudad,$encargado,$contacto,$direccion);
-            header("Location: ver");
+            header("Location:" . BASE_URL . "ver");
         }
     }
 }

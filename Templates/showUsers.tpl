@@ -1,16 +1,21 @@
 {include file="header.tpl"}
-<ul>
-    {foreach from=$users item=$usuario}
+<ul class="users">
+    {foreach from=$users item=$usuario }
+    <div class="cajaUser">
         <li class="list-group-item">
-            <label>
-                Nombre:
-            </label>        
-                {$usuario->nombre}
-                Mail: {$usuario->mail}
-                Ciudad: {$usuario->ciudad}
+            <label class="userAdmin">Nombre: </label>        
+            {$usuario->nombre}
         </li>
         <li class="list-group-item">
-            Nivel de administracion: 
+            <label class="userAdmin">Mail: </label>        
+            {$usuario->mail}
+        </li>
+        <li class="list-group-item">
+            <label class="userAdmin">Ciudad: </label>        
+            {$usuario->ciudad}
+        </li>
+        <li class="list-group-item">
+            <label class="userAdmin">Nivel de Administración: </label>   
             {if ($usuario->habilitado)}
                 <p>Usuario Administrador</p>
             {else}
@@ -35,6 +40,7 @@
                 <a href="{$base}deleteUser/{$usuario->id}">Eliminar Usuario</a>
             </li>
         {/if}
+    </div>
     {/foreach}
 </ul>
 {include file="footer.tpl"}

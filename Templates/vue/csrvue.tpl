@@ -12,4 +12,5 @@
             </span>
         </li>
     </ul>
+</section>
 {/literal}

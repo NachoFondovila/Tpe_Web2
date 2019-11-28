@@ -20,5 +20,5 @@
 {/if}
 
 
-{include file="vue/csrvue.tpl"}
+{* {include file="vue/csrvue.tpl"} *}
 {include file="footer.tpl"}

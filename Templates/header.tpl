@@ -9,15 +9,12 @@
         <title>{$title}</title>
     </head>
     
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <body>
 
     <input type="hidden" id="user_id" value={$user['ID']}>
 
         <div class="logo">
-            <a href= "http://localhost/GitHub/Tpe_Web2/ver"> <h2>Inicio</h2> </a>
+            <a href= "{$base}ver"> <h2>Inicio</h2> </a>
             {$Logo}
         </div>
             <ul class="nav nav-tabs">

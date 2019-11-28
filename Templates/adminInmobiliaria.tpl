@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">Agregar Inmobiliaria</span>
+    <span class="navbar-brand mb-0 h1">Agregar Inmobiliaria</span>
 </nav>
 
 <form class="p-4" action="addInm" method="POST">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-11 21:29:38
+/* Smarty version 3.1.33, created on 2019-11-28 15:16:10
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\adminInmobiliaria.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dc9c4b21daea1_80552911',
+  'unifunc' => 'content_5ddfd6aa2d55d5_67655282',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '210948155ef258b9abd43fadc8dcab954c9b70a6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\adminInmobiliaria.tpl',
-      1 => 1572555528,
+      1 => 1574808228,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5dc9c4b21daea1_80552911 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ddfd6aa2d55d5_67655282 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">Agregar Inmobiliaria</span>
+    <span class="navbar-brand mb-0 h1">Agregar Inmobiliaria</span>
 </nav>
 
 <form class="p-4" action="addInm" method="POST">
@@ -82,5 +82,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <input name="contact" type="text" class="form-control" id="exampleDropdownFormEmail2" >
     </div>
     <button type="submit" class="btn btn-primary">Modificar</button>
-</form><?php }
+</form>
+<?php }
 }

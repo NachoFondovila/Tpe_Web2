@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-20 22:20:21
+/* Smarty version 3.1.33, created on 2019-11-28 20:33:51
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedades.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dd5ae1533cae0_07466026',
+  'unifunc' => 'content_5de0211fc05233_00285887',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1244eb92300e960176a39df39bd6dbf5cbe0c8be' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedades.tpl',
-      1 => 1574284726,
+      1 => 1574968988,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5dd5ae1533cae0_07466026 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de0211fc05233_00285887 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -33,43 +33,47 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
 
 <div class="propiedades">
     <?php if ($_smarty_tpl->tpl_vars['propiedades']->value != null) {?>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 40rem;">
             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['propiedades']->value, 'propiedad');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['propiedad']->value) {
 ?>
-                <?php
+                <div class="cajaProp">
+                    <?php if ((isset($_smarty_tpl->tpl_vars['imgs']->value))) {?>
+                        <?php
 $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['cant_im']->value-1+1 - (0) : 0-($_smarty_tpl->tpl_vars['cant_im']->value-1)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
 if ($_smarty_tpl->tpl_vars['i']->total > 0) {
 for ($_smarty_tpl->tpl_vars['i']->value = 0, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
 $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;?>
-                    <?php if ($_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->id_propiedad_fk == $_smarty_tpl->tpl_vars['propiedad']->value->id) {?>
-                        <img class="card-img-top" src="../<?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->ruta;?>
+                            <?php if ($_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->id_propiedad_fk == $_smarty_tpl->tpl_vars['propiedad']->value->id) {?>
+                                <img class="card-img-top" src="../<?php echo $_smarty_tpl->tpl_vars['imgs']->value[$_smarty_tpl->tpl_vars['i']->value]->ruta;?>
 ">
-                    <?php }?>
-                <?php }
+                            <?php }?>
+                        <?php }
 }
 ?>
-                <div class="card-body">
-                    <h5 class="card-title">En <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
+                    <?php }?>
+                    <div class="card-body">
+                        <h5 class="card-title">En <?php echo $_smarty_tpl->tpl_vars['propiedad']->value->estado;?>
 </h5>
-                                        <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
-                        <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+                        <?php if (($_smarty_tpl->tpl_vars['user']->value['USER_TYPE'])) {?>
+                            <a class="btn btn-primary" href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 propiedad/<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
 /eliminar">Eliminar</a>
-                    <?php }?>
-                        <a class="btn btn-primary"href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+                        <?php }?>
+                            <a class="btn btn-primary"href="<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
 propiedad/<?php echo $_smarty_tpl->tpl_vars['propiedad']->value->id;?>
 ">Ver detalles</a>
+                    </div>
                 </div>
             <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
-        <?php } else { ?>
-            <h3>Aún no hay propiedades disponibles en esta inmobiliaria</h3>
+    <?php } else { ?>
+        <h3>Aún no hay propiedades disponibles en esta inmobiliaria</h3>
     <?php }?>
 </div>
 
@@ -96,7 +100,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <label for="exampleDropdownFormEmail2">Imagen</label>
             <input name="image[]" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
         </div>
-        <button type="submit" class="btn btn-primary">AGREGAR</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
 <?php }?>
 

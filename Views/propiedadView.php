@@ -37,10 +37,10 @@ class propiedadView{
         $this->Smarty->assign('title',$title); 
         if($imgs){
             $cant=count($imgs);
-            $this->Smarty->assign('imgs',$imgs);
             $this->Smarty->assign('cant_im',$cant);
             // var_dump($imgs[0]->ruta);die();
         }
+        $this->Smarty->assign('imgs',$imgs);
         $this->Smarty->assign('inmobiliaria',$inmobiliaria); 
         $this->Smarty->assign('user',$user);
         $this->Smarty->assign('Logo','<img src="../img/anabelaltuna.png">');

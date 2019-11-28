@@ -25,32 +25,27 @@ class propiedadModel{
     
     public function elimPropiedad($id){
         $this->deleteImages($id);
-        // var_dump($id);die();
         $propiedad= $this->db->prepare("DELETE FROM propiedad WHERE id=?");
         $propiedad->execute(array($id)); 
     }
 
-    public function deleteImage($idProp){
-        // var_dump($idProp);die();
-        //eliminar imagenes del server
+    public function deleteImages($idProp){
         $imagenes=$this->getImagenes($idProp);
         $cantTotal=count($imagenes['name']);
-        var_dump($imagenes['ruta'][$i]);die();
         for ($i=0;$i<$cantTotal;$i++) {
             unlink($imagenes['ruta'][$i]);
         }
         $imagen= $this->db->prepare("DELETE FROM imagenes WHERE id_propiedad_fk=?");
-        $imagen->execute(array($idProp));
-        // var_dump($imagen->errorInfo());die();    
+        $imagen->execute(array($idProp));   
     }
+
     public function elimImage($idImg){
         $imagen= $this->db->prepare("DELETE FROM imagenes WHERE id=?");
         $imagen->execute(array($idImg));
-        //unlink($imagenes['ruta'][$i]);
     }
 
-    function getAllImgs(){/////////////////////////////////////////////////////////////////////////////////////////
-        $imagen = $this->db->prepare("SELECT * FROM imagenes ");
+    function getAllImgs(){
+        $imagen = $this->db->prepare("SELECT * FROM imagenes");
         $imagen->execute();
         $imagenes=$imagen->fetchAll(PDO::FETCH_OBJ);
         return $imagenes;
@@ -62,7 +57,6 @@ class propiedadModel{
         $imagenes=$imagen->fetchAll(PDO::FETCH_OBJ);
         return $imagenes;
     }
-
 
     function getInmobiliaria($id){
         $sentencia= $this->db->prepare('SELECT * FROM inmobiliaria WHERE id=?');
@@ -79,7 +73,7 @@ class propiedadModel{
     }
     
     function aggPropiedad($direccion,$estado,$tipo,$imagenes=null,$id_inmobiliaria_fk){
-        $propiedad = $this->db->prepare('INSERT INTO propiedad(direccion,tipo,estado,id_inmobiliaria_fk) VALUES(?,?,?,?)');
+        $propiedad = $this->db->prepare('INSERT INTO propiedad (direccion,tipo,estado,id_inmobiliaria_fk) VALUES(?,?,?,?)');
         $propiedad->execute([$direccion,$tipo,$estado,$id_inmobiliaria_fk]);
         if($imagenes){
             $id_prop = $this->db->lastInsertId();
@@ -87,18 +81,12 @@ class propiedadModel{
         }
     }
     
-    
-    //funcion que mueve la imagen y retorna la ruta de donde se encuentra
-    // private function moveFile($file){
-    //     $filepath= "img/propiedades/".uniqid().".".strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    //     move_uploaded_file($file['tmp_name'],$filepath);
-    
-    //     return $filepath;
-    // }
-    
    public function subirImagenes($imagenes,$idProp){
        $sent_imagenes = $this->db->prepare('INSERT INTO imagenes (id_propiedad_fk,ruta) VALUES(?,?)');
-       $cantTotal=count($imagenes['name']);
+       $cantTotal=0;
+       if(is_array($imagenes)){
+           $cantTotal= count($imagenes['type']);
+       }
        if($cantTotal>1){
            for ($i=0;$i<$cantTotal;$i++) {
                $filepath= "img/propiedades/".uniqid().".".strtolower(pathinfo($imagenes['name'][$i], PATHINFO_EXTENSION));  
@@ -107,11 +95,9 @@ class propiedadModel{
             }
         }
         else{
-            $filepath= "img/propiedades/".uniqid().".".strtolower(pathinfo($imagenes['name'], PATHINFO_EXTENSION));  
-            move_uploaded_file($imagenes['tmp_name'], $filepath);
+            $filepath= "img/propiedades/".uniqid().".".strtolower(pathinfo($imagenes['name'][0], PATHINFO_EXTENSION));  
+            move_uploaded_file($imagenes['tmp_name'][0], $filepath);
             $sent_imagenes->execute([$idProp,$filepath]);
         }
     }
 }
-
-

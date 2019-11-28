@@ -6,25 +6,28 @@
 
 <div class="propiedades">
     {if $propiedades != null}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 40rem;">
             {foreach from=$propiedades item=$propiedad}
-                {for $i=0 to $cant_im -1}
-                    {if $imgs[$i]->id_propiedad_fk == $propiedad->id }
-                        <img class="card-img-top" src="../{$imgs[$i]->ruta}">
+                <div class="cajaProp">
+                    {if (isset($imgs))}
+                        {for $i=0 to $cant_im -1}
+                            {if $imgs[$i]->id_propiedad_fk == $propiedad->id }
+                                <img class="card-img-top" src="../{$imgs[$i]->ruta}">
+                            {/if}
+                        {/for}
                     {/if}
-                {/for}
-                <div class="card-body">
-                    <h5 class="card-title">En {$propiedad->estado}</h5>
-                    {* <p class="card-text">Propiedad ubicada en la calle {$propiedad->direccion} en la ciudad de {$inmobiliaria->ciudad}</p> *}
-                    {if ($user['USER_TYPE'])}
-                        <a class="btn btn-primary" href="{$base}propiedad/{$propiedad->id}/eliminar">Eliminar</a>
-                    {/if}
-                        <a class="btn btn-primary"href="{$base}propiedad/{$propiedad->id}">Ver detalles</a>
+                    <div class="card-body">
+                        <h5 class="card-title">En {$propiedad->estado}</h5>
+                        {if ($user['USER_TYPE'])}
+                            <a class="btn btn-primary" href="{$base}propiedad/{$propiedad->id}/eliminar">Eliminar</a>
+                        {/if}
+                            <a class="btn btn-primary"href="{$base}propiedad/{$propiedad->id}">Ver detalles</a>
+                    </div>
                 </div>
             {/foreach}
         </div>
-        {else}
-            <h3>Aún no hay propiedades disponibles en esta inmobiliaria</h3>
+    {else}
+        <h3>Aún no hay propiedades disponibles en esta inmobiliaria</h3>
     {/if}
 </div>
 
@@ -50,7 +53,7 @@
             <label for="exampleDropdownFormEmail2">Imagen</label>
             <input name="image[]" type="file" class="form-control" id="exampleDropdownFormEmail2" multiple>
         </div>
-        <button type="submit" class="btn btn-primary">AGREGAR</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
 {/if}
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-20 23:56:43
+/* Smarty version 3.1.33, created on 2019-11-27 22:39:21
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dd5c4ab373163_46890156',
+  'unifunc' => 'content_5ddeed0993f279_64060062',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '929712189c848ac3ce639846aecc22e637cf5232' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\header.tpl',
-      1 => 1574290602,
+      1 => 1574890567,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5dd5c4ab373163_46890156 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ddeed0993f279_64060062 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -34,18 +34,14 @@ function content_5dd5c4ab373163_46890156 (Smarty_Internal_Template $_smarty_tpl)
 </title>
     </head>
     
-    <!-- development version, includes helpful console warnings -->
-    <?php echo '<script'; ?>
- src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"><?php echo '</script'; ?>
->
-
     <body>
 
     <input type="hidden" id="user_id" value=<?php echo $_smarty_tpl->tpl_vars['user']->value['ID'];?>
 >
 
         <div class="logo">
-            <a href= "http://localhost/GitHub/Tpe_Web2/ver"> <h2>Inicio</h2> </a>
+            <a href= "<?php echo $_smarty_tpl->tpl_vars['base']->value;?>
+ver"> <h2>Inicio</h2> </a>
             <?php echo $_smarty_tpl->tpl_vars['Logo']->value;?>
 
         </div>
