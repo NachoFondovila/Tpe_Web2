@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",function(){
             elim: function(id_comentario){//elim =nombre del button, parametro de vue
                 eliminar(id_comentario);//funcion de js
             }
-          }
+        }
     });
 
     let admin = document.getElementById("admin");
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded",function(){
             let data= {
                 id_prop: document.getElementById("id_prop").value,
                 id_user: document.getElementById("user_id").value,
+                nombre_user: document.getElementById("user_name").value,
                 puntuacion: document.getElementById("puntuacion").value,
                 comentario: document.getElementById("comentario").value,
             }
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded",function(){
             .then(response => {
                 getComents(idProp);
                 getPorcent(idProp);
+                document.getElementById("comentario").value = "";
             })
             .catch(error => console.log(error));
         })

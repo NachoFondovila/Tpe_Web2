@@ -16,10 +16,15 @@ class comentsModel{
         return   $coments;
     }
 
-    function addCom($fecha,$puntuacion,$comentario,$idProp,$user){
+    function deleteAll($id_prop){
+        $sentencia=$this->API->prepare('DELETE FROM comentario where id_prop_fk = ?');
+        $sentencia->execute(array($id_prop));
+    }
+
+    function addCom($fecha,$puntuacion,$comentario,$idProp,$userId,$userName){
         // echo($idProp,$puntuacion,$fecha,$comentario,$user);die();   
-        $sentencia=$this->API->prepare('INSERT INTO comentario(id_prop_fk,puntuacion,fecha,comentario,id_user_fk) VALUES (?,?,?,?,?)');
-        $sentencia->execute(array($idProp,$puntuacion,$fecha,$comentario,$user));
+        $sentencia=$this->API->prepare('INSERT INTO comentario(id_prop_fk,puntuacion,fecha,comentario,id_user_fk,nombre_user) VALUES (?,?,?,?,?,?)');
+        $sentencia->execute(array($idProp,$puntuacion,$fecha,$comentario,$userId,$userName));
         return false;
     }
     function delete($idCom){

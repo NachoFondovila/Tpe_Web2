@@ -31,15 +31,21 @@ class userController{
 
     public function deleteUser($params = null) {
         $id=$params[':ID'];
-        $this->model->delete($id);
-        header("Location: ".BASE_URL."users");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            $this->model->delete($id);
+            header("Location: ".BASE_URL."users");
+        }
     }
    
     public function updateUser($params = null) { // tengo que consultar si soy administrador ??
         $id=$params[':ID'];
         $bool=$params[':BOOL'];
-        $this->model->updatePermiso($id,$bool);
-        header("Location: ".BASE_URL."users");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            $this->model->updatePermiso($id,$bool);
+            header("Location: ".BASE_URL."users");
+        }
     }
 
     public function verifyUser() {

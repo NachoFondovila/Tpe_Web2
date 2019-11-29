@@ -19,7 +19,7 @@
         <label for="exampleDropdownFormEmail2">Contacto</label>
         <input name="contact" type="text" class="form-control" id="exampleDropdownFormEmail2" >
     </div>
-    <button type="submit" class="btn btn-primary">AGREGAR</button>
+    <button type="submit" class="btn btn-primary">Agregar</button>
 </form>
 
 <nav class="navbar navbar-light bg-light">

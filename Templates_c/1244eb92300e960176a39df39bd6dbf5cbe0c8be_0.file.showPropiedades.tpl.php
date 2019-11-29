@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-28 20:33:51
+/* Smarty version 3.1.33, created on 2019-11-28 22:30:38
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedades.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de0211fc05233_00285887',
+  'unifunc' => 'content_5de03c7e06b4d2_29252749',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1244eb92300e960176a39df39bd6dbf5cbe0c8be' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedades.tpl',
-      1 => 1574968988,
+      1 => 1574976636,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5de0211fc05233_00285887 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de03c7e06b4d2_29252749 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -33,7 +33,7 @@ $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_sm
 
 <div class="propiedades">
     <?php if ($_smarty_tpl->tpl_vars['propiedades']->value != null) {?>
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 30rem;">
             <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['propiedades']->value, 'propiedad');
 if ($_from !== null) {

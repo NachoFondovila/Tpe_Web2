@@ -6,7 +6,7 @@
 
 <div class="propiedades">
     {if $propiedades != null}
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 30rem;">
             {foreach from=$propiedades item=$propiedad}
                 <div class="cajaProp">
                     {if (isset($imgs))}

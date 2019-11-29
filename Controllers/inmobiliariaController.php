@@ -37,28 +37,30 @@ class inmobiliariaController {
         $encargado = $_POST['encargado'];
         $direccion = $_POST['direc'];
         $contacto = $_POST['contact'];
-        if(!empty($ciudad) && !empty($encargado) && !empty($direccion)){
-            $this->model->aggInmobiliaria($ciudad, $encargado, $direccion, $contacto);
-            header("Location:" . BASE_URL . "ver");
-        }
-        else{
-            $this->view->displayError("faltan completar los campos obligatorios.");
-        }
-    }
-    
-    public function showComents(){
         
-        $this->view->showComents();
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            if(!empty($ciudad) && !empty($encargado) && !empty($direccion)){
+                $this->model->aggInmobiliaria($ciudad, $encargado, $direccion, $contacto);
+                header("Location:" . BASE_URL . "ver");
+            }
+            else{
+                $this->view->displayError("faltan completar los campos obligatorios.");
+            }
+        }
     }
 
     public function deleteInmobiliaria($params = null){
         $idInmobiliaria=$params[':ID'];
         $propiedades=$this->modelProp->getPropiedades($idInmobiliaria);
-        if($propiedades==null){
-            $this->model->elimInmobiliaria($idInmobiliaria);
-            header("Location:" . BASE_URL . "ver");
-        }else{
-            $this->view->displayError("Primero debe eliminar las propiedades de esta  inmobiliaria");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){    
+            if($propiedades==null){
+                $this->model->elimInmobiliaria($idInmobiliaria);
+                header("Location:" . BASE_URL . "ver");
+            }else{
+                $this->view->displayError("Primero debe eliminar las propiedades de esta  inmobiliaria");
+            }
         }
     }
     

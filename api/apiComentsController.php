@@ -44,7 +44,7 @@ class apiComentsController extends apiController {
         $fecha= date("Y/m/d");
         $user=$this->helper->getLoggedUser();
         if($user['USERTYPE']==0){
-            $this->model->addCom($fecha,$comentario->puntuacion,$comentario->comentario,$comentario->id_prop,$comentario->id_user);
+            $this->model->addCom($fecha,$comentario->puntuacion,$comentario->comentario,$comentario->id_prop,$comentario->id_user,$comentario->nombre_user);
         }else{
             $this->view->displayError("Debe ser usuario registrado para comentar");
         }

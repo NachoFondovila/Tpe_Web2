@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-28 20:33:30
+/* Smarty version 3.1.33, created on 2019-11-29 02:24:59
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\Templates\showPropiedad.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de0210a4bdca4_24612904',
+  'unifunc' => 'content_5de0736b0bf031_34361446',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d2f44b5b24fc7099cfcf49c32075d34d49d6676' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\Templates\\showPropiedad.tpl',
-      1 => 1574969587,
+      1 => 1574990698,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_5de0210a4bdca4_24612904 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de0736b0bf031_34361446 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -118,6 +118,9 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 
     <?php $_smarty_tpl->_subTemplateRender("file:vue/displayComent.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 if (($_smarty_tpl->tpl_vars['user']->value['USERNAME'] && $_smarty_tpl->tpl_vars['user']->value['USER_TYPE'] == 0)) {?>
+
+    <h3 class="prom">Agregar comentario</h3>
+
     <form class="p-4" id="form-coments" action="addCom" method=POST>
 
         <label for="exampleDropdownFormEmail2">Puntuacion</label>
@@ -131,7 +134,7 @@ if (($_smarty_tpl->tpl_vars['user']->value['USERNAME'] && $_smarty_tpl->tpl_vars
 
 
         <label for="exampleDropdownFormEmail2">Comentario</label>
-        <textarea class="form-group" id="comentario" name="comentario" rows="5"></textarea>
+        <textarea class="form-group" id="comentario" onfocus="clearContent(this)" name="comentario" placeholder="Ingrese su comentario" rows="5"></textarea>
          
         <button type="submit" class="btn btn-primary">Comentar</button>
 

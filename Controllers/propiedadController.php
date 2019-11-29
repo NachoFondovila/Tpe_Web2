@@ -3,6 +3,7 @@ require_once "./Models/propiedadModel.php";
 require_once "./Views/propiedadView.php";
 require_once "helpers/user.helper.php";
 require_once "./Models/inmobiliariaModel.php";
+require_once "./api/comentsModel.php";
 
 
 class propiedadController {
@@ -15,6 +16,7 @@ class propiedadController {
     function __construct(){
         $this->helper=new userHelper();
         $this->model = new propiedadModel();
+        $this->modelComent = new comentsModel();
         $this->modelInmo = new inmobiliariaModel();
         $this->view = new propiedadView();
     }
@@ -47,17 +49,16 @@ class propiedadController {
     
     function addPropiedadImage($params=null){
         $idPropiedad = $params[':ID'];
-        if($this->sonImg($_FILES['imago'])) {
-            $this->model->subirImagenes($_FILES['imago'],$idPropiedad);
-            header("location:" .BASE_URL. "propiedad/$idPropiedad");
-        }
-        else{
-            $this->view->displayError("Formato de archivo no aceptado");
-        }
-    }
-
-    public function showComents($params=null){ ////////
         $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            if($this->sonImg($_FILES['imago'])) {
+                $this->model->subirImagenes($_FILES['imago'],$idPropiedad);
+                header("location:" .BASE_URL. "propiedad/$idPropiedad");
+            }
+            else{
+                $this->view->displayError("Formato de archivo no aceptado");
+            }
+        }
     }
 
     public function updatePropiedad($params = null) {
@@ -66,24 +67,27 @@ class propiedadController {
         $tipo = $_POST['type'];
         $estado = $_POST['state'];
         $imgs= $_FILES['image'];
-        if(!empty($direccion) && !empty($tipo) && !empty($estado)){
-            if($imgs['name'] != ""){
-                if($this->sonImg($imgs)){
-                    $this->model->update($idPropiedad,$direccion,$estado,$imgs,$tipo);
-                    header("location:".BASE_URL. "propiedad/$idPropiedad"); 
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            if(!empty($direccion) && !empty($tipo) && !empty($estado)){
+                if($imgs['name'] != ""){
+                    if($this->sonImg($imgs)){
+                        $this->model->update($idPropiedad,$direccion,$estado,$imgs,$tipo);
+                        header("location:".BASE_URL. "propiedad/$idPropiedad"); 
+                    }
+                    else{
+                        $this->view->displayError("Formato de archivo no aceptado");
+                    }
                 }
                 else{
-                    $this->view->displayError("Formato de archivo no aceptado");
+                    $imagen=null;
+                    $this->model->update($idPropiedad,$direccion,$estado,$imagen,$tipo);
+                    header("location:".BASE_URL. "propiedad/$idPropiedad");
                 }
             }
             else{
-                $imagen=null;
-                $this->model->update($idPropiedad,$direccion,$estado,$imagen,$tipo);
-                header("location:".BASE_URL. "propiedad/$idPropiedad");
+                $this->view->displayError("faltan completar los campos obligatorios");
             }
-        }
-        else{
-            $this->view->displayError("faltan completar los campos obligatorios");
         }
     }
 
@@ -93,17 +97,20 @@ class propiedadController {
         $tipo = $_POST['type'];
         $estado = $_POST['state'];
         $imgs=$_FILES['image'];
-        if(!empty($direccion) && !empty($tipo) && !empty($estado)){
-            if($this->sonImg($imgs)) {
-                $this->model->aggPropiedad($direccion,$estado,$tipo,$imgs,$idInmo);
-                header("Location: ".BASE_URL."inmobiliaria/{$idInmo}");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            if(!empty($direccion) && !empty($tipo) && !empty($estado)){
+                if($this->sonImg($imgs)) {
+                    $this->model->aggPropiedad($direccion,$estado,$tipo,$imgs,$idInmo);
+                    header("Location: ".BASE_URL."inmobiliaria/{$idInmo}");
+                }
+                else{
+                    $this->view->displayError("Formato de archivo no aceptado");
+                }
             }
             else{
-                $this->view->displayError("Formato de archivo no aceptado");
+                $this->view->displayError("Faltan completar los campos obligatorios");
             }
-        }
-        else{
-            $this->view->displayError("Faltan completar los campos obligatorios");
         }
     }
 
@@ -111,16 +118,23 @@ class propiedadController {
         $idPropiedad=$params[':ID'];
         $prop= $this->model->getPropiedad($idPropiedad);
         $idInmo= $prop->id_inmobiliaria_fk;
-        $this->model->elimPropiedad($idPropiedad);        
-        header("Location: ".BASE_URL."inmobiliaria/{$idInmo}");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+                $this->modelComent->deleteAll($idPropiedad);
+                $this->model->elimPropiedad($idPropiedad);        
+                header("Location: ".BASE_URL."inmobiliaria/{$idInmo}");
+        }
     }
 
     function deleteImage($params = []) {
         $idPropiedad=$params[':ID'];
         $img=$params[':IMG'];
-        $this->model->elimImage($img);
-        $propiedad=$this->model->getPropiedad($idPropiedad);
-        header("Location: ".BASE_URL."propiedad/{$propiedad->id}");
+        $user=$this->helper->getLoggedUser();
+        if($user['USER_TYPE']){
+            $this->model->elimImage($img);
+            $propiedad=$this->model->getPropiedad($idPropiedad);
+            header("Location: ".BASE_URL."propiedad/{$propiedad->id}");
+        }
     }
     
     function sonImg($imagenes){

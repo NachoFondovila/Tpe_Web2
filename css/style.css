@@ -7,15 +7,25 @@
     align-items: center;
 }
 
-.propiedades, .users, .card, .list-group {
+.showCom li, .comentarios li{
+    list-style: none;
+}
+
+
+.prom{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ed5c72;
+}
+
+.propiedades, .users, .card, .list-group, .showCom {
     margin: 4%;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-around;
 }
 
 .registrarse {
-    margin-left: 2%;
+    margin-left: 2%; 
     border: solid 1px;
     padding: 4px;
 }
@@ -76,10 +86,10 @@ footer {
     flex-direction: column;
 }
 
-.cajaProp, .card-body {
+.cajaProp {
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    margin: 2%;
 }
 
 .card-title {

@@ -68,6 +68,9 @@
 
     {include file="vue/displayComent.tpl"}
 {if ($user['USERNAME'] && $user['USER_TYPE'] == 0)}
+
+    <h3 class="prom">Agregar comentario</h3>
+
     <form class="p-4" id="form-coments" action="addCom" method=POST>
 
         <label for="exampleDropdownFormEmail2">Puntuacion</label>
@@ -81,7 +84,7 @@
 
 
         <label for="exampleDropdownFormEmail2">Comentario</label>
-        <textarea class="form-group" id="comentario" name="comentario" rows="5"></textarea>
+        <textarea class="form-group" id="comentario" onfocus="clearContent(this)" name="comentario" placeholder="Ingrese su comentario" rows="5"></textarea>
          
         <button type="submit" class="btn btn-primary">Comentar</button>
 

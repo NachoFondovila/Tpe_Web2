@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-27 22:39:21
+/* Smarty version 3.1.33, created on 2019-11-28 23:22:12
   from 'C:\xampp\htdocs\GitHub\Tpe_Web2\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ddeed0993f279_64060062',
+  'unifunc' => 'content_5de04894246761_30424260',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '929712189c848ac3ce639846aecc22e637cf5232' => 
     array (
       0 => 'C:\\xampp\\htdocs\\GitHub\\Tpe_Web2\\templates\\header.tpl',
-      1 => 1574890567,
+      1 => 1574979509,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ddeed0993f279_64060062 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de04894246761_30424260 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,6 +37,8 @@ function content_5ddeed0993f279_64060062 (Smarty_Internal_Template $_smarty_tpl)
     <body>
 
     <input type="hidden" id="user_id" value=<?php echo $_smarty_tpl->tpl_vars['user']->value['ID'];?>
+>
+    <input type="hidden" id="user_name" value=<?php echo $_smarty_tpl->tpl_vars['user']->value['USERNAME'];?>
 >
 
         <div class="logo">

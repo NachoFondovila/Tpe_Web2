@@ -12,6 +12,7 @@
     <body>
 
     <input type="hidden" id="user_id" value={$user['ID']}>
+    <input type="hidden" id="user_name" value={$user['USERNAME']}>
 
         <div class="logo">
             <a href= "{$base}ver"> <h2>Inicio</h2> </a>
